@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    :root {
+      --green: #086948;
+      --green-light: #4FC346;
+      --accent: #3fb950;
+      --accent-dim: #1f6b35;
+      --surface: #161b22;
+      --surface2: #1c2128;
+      --surface3: #21262d;
+      --border: #30363d;
+      --border2: #21262d;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --text3: #6e7681;
+      --purple: #a371f7;
+      --blue: #58a6ff;
+      --orange: #ffa657;
+      --yellow: #e3b341;
+      --red: #f85149;
+    }
+    .page { max-width: 1040px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* HEADER */
+    .header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    .header-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 1rem; color: var(--text);
+    }
+    .header-logo-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(63,185,80,0.5);
+    }
+    .header-badge {
+      font-size: 0.72rem; font-weight: 600; padding: 4px 10px;
+      background: var(--accent-dim); color: var(--accent);
+      border-radius: 99px; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .copy-all-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 18px; border-radius: 8px;
+      background: var(--accent); color: #fff;
+      font-family: inherit; font-weight: 600; font-size: 0.87rem;
+      border: none; cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .copy-all-btn:hover { background: #3aaa47; transform: translateY(-1px); }
+    .copy-all-btn:active { transform: translateY(0); }
+    .copy-all-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* HERO PROMPT */
+    .prompt-hero {
+      margin-top: 36px; padding: 40px;
+      background: linear-gradient(135deg, #0e1e15 0%, #0d1117 60%);
+      border: 1px solid var(--accent-dim);
+      border-radius: 16px;
+      position: relative; overflow: hidden;
+    }
+    .prompt-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 90% 10%, rgba(63,185,80,0.09), transparent);
+      pointer-events: none;
+    }
+    .prompt-hero-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+    }
+    .prompt-hero-tag::before {
+      content: ''; width: 20px; height: 1.5px;
+      background: var(--accent); border-radius: 2px;
+    }
+    .prompt-hero h1 {
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--text); margin-bottom: 12px;
+    }
+    .prompt-hero h1 em { font-style: normal; color: var(--accent); }
+    .prompt-hero p {
+      color: var(--text2); font-size: 0.97rem; max-width: 68ch; line-height: 1.7;
+    }
+    .stats-row {
+      display: flex; flex-wrap: wrap; gap: 20px; margin-top: 28px;
+    }
+    .stat-chip {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; font-weight: 600; color: var(--text2);
+    }
+    .stat-chip-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+    /* SECTION STRUCTURE */
+    .sections-nav {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px;
+    }
+    .nav-chip {
+      padding: 6px 14px; border-radius: 99px; font-size: 0.78rem; font-weight: 600;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text2); cursor: pointer; transition: border-color 0.15s, color 0.15s;
+      text-decoration: none;
+    }
+    .nav-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* CONTENT BLOCKS */
+    .block {
+      margin-top: 40px; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .block-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 20px; background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+    .block-num {
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 700;
+    }
+    .block-num-green { background: rgba(63,185,80,0.15); color: var(--accent); }
+    .block-num-blue { background: rgba(88,166,255,0.15); color: var(--blue); }
+    .block-num-purple { background: rgba(163,113,247,0.15); color: var(--purple); }
+    .block-num-orange { background: rgba(255,166,87,0.15); color: var(--orange); }
+    .block-num-yellow { background: rgba(227,179,65,0.15); color: var(--yellow); }
+    .block-num-red { background: rgba(248,81,73,0.15); color: var(--red); }
+    .block-title {
+      font-weight: 700; font-size: 0.92rem; color: var(--text); flex: 1;
+    }
+    .block-tag {
+      font-size: 0.7rem; font-weight: 600; padding: 3px 9px; border-radius: 99px;
+      background: var(--surface3); color: var(--text3); letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .block-tag-new { background: rgba(63,185,80,0.12); color: var(--accent); }
+    .block-body { padding: 22px 24px; background: var(--surface); }
+
+    /* TYPOGRAPHY IN BODY */
+    .block-body h3 {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text3); margin: 22px 0 10px;
+    }
+    .block-body h3:first-child { margin-top: 0; }
+    .block-body p {
+      color: var(--text2); font-size: 0.92rem; margin-bottom: 10px; line-height: 1.7;
+    }
+    .block-body p:last-child { margin-bottom: 0; }
+    .block-body strong { color: var(--text); }
+    .block-body em { color: var(--accent); font-style: normal; }
+
+    /* CODE BLOCKS */
+    .code-block {
+      background: #0d1117; border: 1px solid var(--border2);
+      border-radius: 8px; padding: 16px 18px; margin: 12px 0;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+      color: #e6edf3; overflow-x: auto; line-height: 1.6;
+    }
+    .code-block .c-green { color: #3fb950; }
+    .code-block .c-blue { color: #79c0ff; }
+    .code-block .c-orange { color: #ffa657; }
+    .code-block .c-purple { color: #d2a8ff; }
+    .code-block .c-yellow { color: #e3b341; }
+    .code-block .c-comment { color: #8b949e; }
+
+    /* CONTENT ITEMS */
+    .content-item {
+      padding: 14px 16px; border-radius: 8px;
+      background: var(--surface3); margin-bottom: 8px;
+      font-size: 0.9rem; color: var(--text2);
+    }
+    .content-item:last-child { margin-bottom: 0; }
+    .content-item strong { color: var(--text); }
+    .content-item .tag-inline {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 4px; margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* EFFECT TABLE */
+    .effect-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    .effect-table th {
+      text-align: left; padding: 10px 14px;
+      background: var(--surface2); color: var(--text3);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; border-bottom: 1px solid var(--border);
+    }
+    .effect-table td {
+      padding: 12px 14px; border-bottom: 1px solid var(--border2);
+      vertical-align: top;
+    }
+    .effect-table tr:last-child td { border-bottom: none; }
+    .effect-table td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+    .effect-table td:last-child { color: var(--text2); }
+    .effect-name {
+      display: inline-block; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; padding: 2px 8px; border-radius: 4px;
+      background: rgba(163,113,247,0.12); color: var(--purple); margin-left: 6px;
+    }
+
+    /* COLOR SWATCHES */
+    .color-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+    .color-swatch {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 8px;
+      background: var(--surface3); flex: 1 1 220px;
+    }
+    .swatch-dot {
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .swatch-info { min-width: 0; }
+    .swatch-hex { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text); }
+    .swatch-name { font-size: 0.78rem; color: var(--text3); margin-top: 1px; }
+
+    /* CALLOUT */
+    .callout {
+      border-radius: 8px; padding: 16px 18px; margin: 14px 0;
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 0.88rem;
+    }
+    .callout-warning { background: rgba(227,179,65,0.08); border: 1px solid rgba(227,179,65,0.2); color: #c9a227; }
+    .callout-info { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.2); color: #58a6ff; }
+    .callout-success { background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.2); color: #3fb950; }
+    .callout-icon { flex-shrink: 0; font-size: 1rem; }
+    .callout p { margin: 0; line-height: 1.6; }
+
+    /* PILLS ROW */
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .pill {
+      padding: 5px 12px; border-radius: 99px; font-size: 0.78rem; font-weight: 600;
+      background: var(--surface3); border: 1px solid var(--border); color: var(--text2);
+    }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border2); margin: 24px 0; }
+
+    /* SECTION ANCHOR */
+    .section-anchor { scroll-margin-top: 80px; }
+
+    @media (max-width: 640px) {
+      .header { padding: 12px 16px; }
+      .block-body { padding: 16px; }
+      .prompt-hero { padding: 24px; }
+    }
+  </style>
+</helmet>
+
+<div class="header">
+  <div class="header-logo">
+    <div class="header-logo-dot"></div>
+    Prompt de Redesign — ISBI Odonto
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="header-badge">v1.0</span>
+    <button class="copy-all-btn" id="copyAllBtn">
+      <svg viewBox="0 0 16 16" fill="currentColor">
+        <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+      </svg>
+      Copiar Prompt Completo
+    </button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="prompt-hero">
+    <div class="prompt-hero-tag">Prompt de Design</div>
+    <h1>Redesign Premium do Site Institucional<br><em>ISBI Odonto</em></h1>
+    <p>Prompt detalhado para recriar o site institucional com layout premium, inovador e exclusivo. Mantém 100% do conteúdo e imagens originais, adiciona menu de navegação, nova seção de números e efeitos de entrada distintos por seção.</p>
+    <div class="stats-row">
+      <div class="stat-chip"><div class="stat-chip-dot"></div>14 seções documentadas</div>
+      <div class="stat-chip"><div class="stat-chip-dot"></div>1 seção nova adicionada</div>
+      <div class="stat-chip"><div class="stat-chip-dot"></div>13 efeitos de entrada distintos</div>
+      <div class="stat-chip"><div class="stat-chip-dot"></div>Zero conteúdo alterado</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="sections-nav">
+    <a href="#sistema" class="nav-chip">Sistema de Design</a>
+    <a href="#nav" class="nav-chip">Navegação</a>
+    <a href="#hero" class="nav-chip">01 Hero</a>
+    <a href="#numeros" class="nav-chip">02 Números ✦ novo</a>
+    <a href="#cuidado" class="nav-chip">03 Cuidado Completo</a>
+    <a href="#atendimento" class="nav-chip">04 Atendimento</a>
+    <a href="#estrutura" class="nav-chip">05 Estrutura</a>
+    <a href="#darkblock" class="nav-chip">06 Bloco Escuro</a>
+    <a href="#sobre" class="nav-chip">07 Sobre</a>
+    <a href="#profissionais" class="nav-chip">08 Profissionais</a>
+    <a href="#tratamentos" class="nav-chip">09 Tratamentos</a>
+    <a href="#depoimentos" class="nav-chip">10 Depoimentos</a>
+    <a href="#localizacao" class="nav-chip">11 Localização</a>
+    <a href="#faq" class="nav-chip">12 FAQ</a>
+    <a href="#cta" class="nav-chip">13 CTA Final</a>
+    <a href="#footer" class="nav-chip">14 Footer</a>
+    <a href="#efeitos" class="nav-chip">Efeitos de Entrada</a>
+    <a href="#global" class="nav-chip">Elementos Globais</a>
+    <a href="#tecnico" class="nav-chip">Técnico</a>
+  </div>
+
+  <!-- ============================================================
+       BLOCO 0 — VISÃO GERAL
+  ============================================================ -->
+  <div class="block section-anchor" id="sistema">
+    <div class="block-header">
+      <div class="block-num block-num-green">0</div>
+      <div class="block-title">Visão Geral &amp; Sistema de Design</div>
+    </div>
+    <div class="block-body">
+      <p>Crie um <strong>site institucional one-page</strong> premium, inovador e exclusivo para o <em>ISBI Odonto — Instituto Sul-Brasileiro de Implantodontia</em>, clínica odontológica de alto padrão em Curitiba/PR. O site deve transmitir autoridade clínica, sofisticação e cuidado humano simultaneamente. O resultado deve ser artesanal, com decisões de design intencionais e identidade forte — <strong>não genérico, não template, não AI-generated</strong>.</p>
+
+      <div class="callout callout-warning">
+        <div class="callout-icon">⚠</div>
+        <p><strong>Regra absoluta:</strong> Não alterar, remover ou reescrever nenhum texto, título ou conteúdo existente. Toda a copy deve ser mantida palavra por palavra. Novas seções adicionadas devem ser claramente marcadas.</p>
+      </div>
+
+      <h3>Paleta de Cores — Manter Exatamente</h3>
+      <div class="color-grid">
+        <div class="color-swatch"><div class="swatch-dot" style="background:#086948"></div><div class="swatch-info"><div class="swatch-hex">--green: #086948</div><div class="swatch-name">Verde institucional principal</div></div></div>
+        <div class="color-swatch"><div class="swatch-dot" style="background:#035F42"></div><div class="swatch-info"><div class="swatch-hex">--green-dark: #035F42</div><div class="swatch-name">Verde escuro (hovers, footer)</div></div></div>
+        <div class="color-swatch"><div class="swatch-dot" style="background:#4FC346"></div><div class="swatch-info"><div class="swatch-hex">--green-soft: #4FC346</div><div class="swatch-name">Verde claro de apoio / acentos</div></div></div>
+        <div class="color-swatch"><div class="swatch-dot" style="background:#1F2A26"></div><div class="swatch-info"><div class="swatch-hex">--ink: #1F2A26</div><div class="swatch-name">Grafite — texto principal</div></div></div>
+        <div class="color-swatch"><div class="swatch-dot" style="background:#51605a"></div><div class="swatch-info"><div class="swatch-hex">--ink-60: #51605a</div><div class="swatch-name">Texto secundário</div></div></div>
+        <div class="color-swatch"><div class="swatch-dot" style="background:#F7F8F5"></div><div class="swatch-info"><div class="swatch-hex">--offwhite: #F7F8F5</div><div class="swatch-name">Fundo de seções alternadas</div></div></div>
+        <div class="color-swatch"><div class="swatch-dot" style="background:#E8ECE8"></div><div class="swatch-info"><div class="swatch-hex">--grey-100: #E8ECE8</div><div class="swatch-name">Bordas suaves</div></div></div>
+        <div class="color-swatch"><div class="swatch-dot" style="background:#EEF4F0"></div><div class="swatch-info"><div class="swatch-hex">--green-wash: #EEF4F0</div><div class="swatch-name">Fundo de ícones / badges</div></div></div>
+        <div class="color-swatch"><div class="swatch-dot" style="background:#cfe0d6"></div><div class="swatch-info"><div class="swatch-hex">--green-line: #cfe0d6</div><div class="swatch-name">Bordas premium</div></div></div>
+        <div class="color-swatch"><div class="swatch-dot" style="background:#12372c"></div><div class="swatch-info"><div class="swatch-hex">Footer: #12372c</div><div class="swatch-name">Fundo do footer</div></div></div>
+      </div>
+
+      <h3>Tipografia</h3>
+      <div class="code-block"><span class="c-comment">/* Google Fonts — carregar no &lt;head&gt; */</span>
+<span class="c-blue">@import url</span>(<span class="c-green">'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap'</span>);
+
+<span class="c-comment">/* Headings (h1–h4): */</span>
+font-family: <span class="c-orange">"Plus Jakarta Sans"</span>, system-ui, sans-serif;
+font-weight: <span class="c-purple">700</span> | <span class="c-purple">800</span>;
+
+<span class="c-comment">/* Body: */</span>
+font-family: <span class="c-orange">"Manrope"</span>, system-ui, sans-serif;
+font-weight: <span class="c-purple">400</span> | <span class="c-purple">500</span> | <span class="c-purple">600</span> | <span class="c-purple">700</span>;
+font-size: <span class="c-yellow">17px</span>; line-height: <span class="c-yellow">1.62</span>;</div>
+
+      <h3>Princípios Visuais Obrigatórios</h3>
+      <div class="content-item">Border-radius variado e intencional: <strong>12px</strong> chips/badges · <strong>18px</strong> cards menores · <strong>26px</strong> cards maiores · <strong>34px</strong> elementos hero/callout</div>
+      <div class="content-item">Sombras sutis e estratégicas — <strong>não em todo elemento</strong>. Usar somente em cards e componentes flutuantes.</div>
+      <div class="content-item">Fundo de seções: apenas <strong>#FFFFFF</strong> e <strong>#F7F8F5</strong>. Jamais gradientes coloridos como fundo de seção inteira (exceto bloco escuro e CTA final).</div>
+      <div class="content-item">Linha decorativa <strong>#4FC346</strong> antes de cada eyebrow (via <code>::before</code> CSS). Eyebrows em <strong>uppercase + letter-spacing 0.14em</strong>.</div>
+      <div class="content-item">Hover em qualquer card: <strong>translateY(-3px) + box-shadow mais pronunciada</strong>. Apenas isso — sem mudanças de cor agressivas.</div>
+      <div class="content-item">Sem emojis. Sem ícones de biblioteca externa. Usar apenas <strong>SVG inline</strong> de linha fina (stroke 1.7–2px).</div>
+      <div class="content-item">Não usar frameworks CSS (sem Bootstrap, Tailwind). CSS custom completo com variáveis <code>:root</code>.</div>
+      <div class="content-item">Não usar bibliotecas de animação (sem GSAP, AOS, Animate.css). Tudo em <strong>CSS puro + JS vanilla</strong>.</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BLOCO NAV
+  ============================================================ -->
+  <div class="block section-anchor" id="nav">
+    <div class="block-header">
+      <div class="block-num block-num-blue">☰</div>
+      <div class="block-title">Header de Navegação — Fixo no Topo</div>
+      <span class="block-tag block-tag-new">NOVO</span>
+    </div>
+    <div class="block-body">
+      <h3>Estrutura Visual</h3>
+      <p><strong>position: fixed</strong>, top 0, left 0, right 0, z-index 100. Altura 78px. Ao estado inicial (topo da página): fundo <strong>rgba(255,255,255,0.82)</strong> + <code>backdrop-filter: saturate(1.4) blur(14px)</code>. Ao rolar além de 12px: adicionar classe <code>.is-scrolled</code> → <code>border-bottom: 1px solid #E8ECE8</code> + <code>box-shadow: 0 6px 24px -18px rgba(15,40,30,0.4)</code>.</p>
+
+      <h3>Logo</h3>
+      <p>À esquerda: <code>&lt;img src="assets/logo-isbi.png" alt="ISBI Odonto"&gt;</code> com <strong>height: 38px</strong>, width: auto.</p>
+
+      <h3>Links de Navegação (Desktop)</h3>
+      <div class="pills">
+        <span class="pill">Início → #topo</span>
+        <span class="pill">Sobre → #sobre</span>
+        <span class="pill">Estrutura → #diferenciais</span>
+        <span class="pill">Profissionais → #profissionais</span>
+        <span class="pill">Tratamentos → #tratamentos</span>
+        <span class="pill">Localização → #localizacao</span>
+        <span class="pill">Contato → #contato</span>
+      </div>
+      <p style="margin-top:12px">Estilo dos links: <code>padding: 9px 14px</code>, border-radius 10px, font-weight 600, cor <strong>#51605a</strong>. Hover: cor <strong>#035F42</strong> + background <strong>#EEF4F0</strong>. Link ativo (seção visível): cor <strong>#086948</strong>, font-weight 700. Usar <code>IntersectionObserver</code> para atualizar o estado ativo ao rolar.</p>
+
+      <h3>CTA no Header (Desktop)</h3>
+      <p>Botão à direita: <strong>"Agendar pelo WhatsApp"</strong> — background <strong>#25D366</strong>, cor branca, ícone SVG do WhatsApp embutido, border-radius 99px, padding 12px 22px, height mínima 46px. <code>href="https://wa.me/554132281313?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."</code></p>
+
+      <h3>Mobile — Hamburger + Drawer</h3>
+      <p>Ocultar links e CTA abaixo de <strong>1000px</strong>. Exibir botão hamburger (46×46px, border-radius 12px, border 1px solid #E8ECE8). Ao clicar: abrir <strong>drawer lateral direito</strong> (width min(86vw, 360px)), com overlay escuro <code>rgba(20,30,26,0.4)</code> por trás. Animação do drawer: <code>translateX(100%) → translateX(0)</code>, 300ms cubic-bezier(0.4,0,0.2,1). Dentro do drawer: logo (32px) + botão fechar + links de navegação em coluna + botão WhatsApp no fundo. Fechar ao clicar em link ou no overlay.</p>
+
+      <div class="callout callout-info">
+        <div class="callout-icon">ℹ</div>
+        <p>O header deve compensar o espaço em todo o site: adicionar <code>padding-top: 78px</code> ao body ou <code>scroll-margin-top: 90px</code> em todas as seções-âncora para o scroll suave não ocultar o título atrás do header.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 01 — HERO
+  ============================================================ -->
+  <div class="block section-anchor" id="hero">
+    <div class="block-header">
+      <div class="block-num block-num-green">01</div>
+      <div class="block-title">Hero — Seção Principal</div>
+      <span class="block-tag">id: #topo</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeito de Entrada — slideInLeft (único nesta página)</h3>
+      <p>Cada filho do bloco de copy anima individualmente via <code>@keyframes slideInLeft</code>: <code>translateX(-40px) opacity(0) → translateX(0) opacity(1)</code>, duração 0.7s, easing <code>cubic-bezier(0.22, 0.8, 0.3, 1)</code>. Delays: logo (0ms) → eyebrow (100ms) → h1 (200ms) → parágrafo (300ms) → botão (420ms). <strong>Usar CSS animation pura, não classe .reveal</strong>.</p>
+
+      <h3>Layout</h3>
+      <p>Padding-top: <code>clamp(100px, 12vw, 140px)</code> (compensar header fixo). Padding-bottom: <code>clamp(72px, 10vw, 120px)</code>. Grid: <code>grid-template-columns: minmax(0, 640px)</code>, conteúdo à esquerda, imagem de fundo à direita via pseudo-elemento.</p>
+
+      <h3>Imagem de Fundo</h3>
+      <div class="code-block"><span class="c-comment">/* Pseudo-elemento ::before do .hero */</span>
+background:
+  <span class="c-green">linear-gradient</span>(90deg,
+    rgba(255,255,255,.96) 0%,
+    rgba(255,255,255,.90) 34%,
+    rgba(255,255,255,.72) 52%,
+    rgba(255,255,255,.18) 72%),
+  <span class="c-orange">url</span>(<span class="c-yellow">"assets/hero_institucional.webp"</span>) no-repeat center center / cover;</div>
+
+      <h3>Conteúdo — Manter Palavra por Palavra</h3>
+      <div class="content-item"><strong>Logo:</strong> <code>&lt;img src="assets/logo-isbi.png" alt="ISBI Odonto - Instituto Sul-Brasileiro de Implantodontia"&gt;</code> — height: clamp(44px, 5vw, 56px)</div>
+      <div class="content-item"><strong>Eyebrow:</strong> "Clínica odontológica · em Curitiba" — dois spans inline com separador</div>
+      <div class="content-item"><strong>H1 (linha por linha):</strong> "ISBI Odonto:" / "cuidado odontológico" / <em>"integrado"</em> / <em>"em Curitiba"</em> — as duas últimas linhas em <strong>verde #086948</strong>, font-style normal</div>
+      <div class="content-item"><strong>Parágrafo lead:</strong> "Atendimento humanizado, planejamento individualizado e estrutura completa para cuidar da sua saúde bucal, função mastigatória e estética do sorriso."</div>
+      <div class="content-item"><strong>Botão WhatsApp:</strong> "Gostaria de mais informações" — background <strong>#25D366</strong>, ícone SVG WhatsApp. href="https://wa.me/554132281313?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." · onclick="isbiTrack('cta_whatsapp_hero')" · class="sellbot-wpp-open"</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 02 — NÚMEROS (NOVA)
+  ============================================================ -->
+  <div class="block section-anchor" id="numeros">
+    <div class="block-header">
+      <div class="block-num block-num-green">02</div>
+      <div class="block-title">Números — Seção de Impacto</div>
+      <span class="block-tag block-tag-new">✦ SEÇÃO NOVA</span>
+    </div>
+    <div class="block-body">
+      <div class="callout callout-success">
+        <div class="callout-icon">✦</div>
+        <p>Seção nova inserida entre o Hero e "Cuidado Completo". Usa dados reais do ISBI. Não contém nenhum conteúdo inventado.</p>
+      </div>
+
+      <h3>Efeito de Entrada — fadeIn puro (único na página)</h3>
+      <p>Toda a seção entra com apenas <code>opacity: 0 → 1</code>, duração 0.5s. Sem translação. Os números animam via JS contagem (0 → valor final) ao entrar no viewport, usando <code>IntersectionObserver</code>. Duração da contagem: 1.8s, easing quadrático (<code>t * t</code>). Adicionar sufixo "+" nos números 23 e 28 após a contagem.</p>
+
+      <h3>Layout</h3>
+      <p>Fundo: <strong>#086948</strong> (verde sólido). Grid: <code>repeat(4, 1fr)</code> desktop / <code>repeat(2, 1fr)</code> mobile. Sem cards, sem bordas — apenas números grandes sobre o verde, colunas separadas por <code>1px solid rgba(255,255,255,0.15)</code>. Padding da seção: <code>clamp(48px, 7vw, 80px)</code> vertical.</p>
+
+      <h3>Conteúdo dos 4 Items</h3>
+      <div class="content-item"><strong>23+</strong> anos de experiência clínica — tipagem do "23" + sinal</div>
+      <div class="content-item"><strong>28+</strong> anos de experiência do Dr. Luciano Zanetti</div>
+      <div class="content-item"><strong>2</strong> especialistas em reabilitação oral</div>
+      <div class="content-item"><strong>1</strong> estrutura completa: laboratório + centro cirúrgico</div>
+
+      <h3>Tipografia dos Itens</h3>
+      <p>Número: Plus Jakarta Sans, weight 800, <code>font-size: clamp(3rem, 6vw, 5rem)</code>, cor <strong>#FFFFFF</strong>. Sublabel: Manrope, weight 500, <code>font-size: 0.85rem</code>, <code>color: rgba(255,255,255,0.72)</code>, <code>text-transform: uppercase</code>, <code>letter-spacing: 0.1em</code>, margin-top 8px.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 03 — CUIDADO COMPLETO
+  ============================================================ -->
+  <div class="block section-anchor" id="cuidado">
+    <div class="block-header">
+      <div class="block-num block-num-blue">03</div>
+      <div class="block-title">Cuidado Completo — Identificação da Dor</div>
+      <span class="block-tag">id: #cuidado · fundo: branco</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeito de Entrada — riseUp stagger (cascata ascendente)</h3>
+      <p>Cards entram em cascata: <code>translateY(32px) opacity(0) → translateY(0) opacity(1)</code>. Delay de <strong>80ms × índice do card</strong>. Card 1 começa em 0ms, card 6 em 400ms. Duração: 0.6s por card.</p>
+
+      <h3>Conteúdo — Manter Palavra por Palavra</h3>
+      <div class="content-item"><strong>Eyebrow:</strong> "Cuidado completo"</div>
+      <div class="content-item"><strong>H2:</strong> "Sua saúde bucal merece atenção em cada detalhe"</div>
+      <div class="content-item"><strong>Lead:</strong> "Cada sorriso tem uma história, uma necessidade e um objetivo. No ISBI Odonto, o atendimento começa com uma avaliação individualizada para entender sua saúde bucal, suas expectativas e o melhor caminho para o seu tratamento."</div>
+
+      <h3>6 Cards de Dor</h3>
+      <p>Grid: <code>repeat(3, 1fr)</code> desktop · <code>repeat(2, 1fr)</code> tablet · <code>1fr</code> mobile. Cada card: fundo branco, <code>border: 1px solid #E8ECE8</code>, border-radius 18px, padding 24px 22px, display flex, gap 15px, alinhamento central. Ícone SVG inline (48×48px, fundo <strong>#EEF4F0</strong>, cor <strong>#086948</strong>). Texto: font-weight 600, font-size 1.02rem.</p>
+      <div class="content-item">🦷 ícone dente — "Precisa fazer uma avaliação odontológica?"</div>
+      <div class="content-item">😊 ícone sorriso — "Quer recuperar a estética do sorriso?"</div>
+      <div class="content-item">👑 ícone coroa — "Tem dificuldade para mastigar?"</div>
+      <div class="content-item">❤ ícone coração — "Usa prótese e deseja mais conforto?"</div>
+      <div class="content-item">⭐ ícone estrela-outline — "Procura atendimento com planejamento completo?"</div>
+      <div class="content-item">🛡 ícone escudo — "Busca uma clínica odontológica em Curitiba com estrutura integrada?"</div>
+
+      <h3>CTA Abaixo dos Cards</h3>
+      <p>Botão WhatsApp centralizado: "Gostaria de mais informações" · onclick="isbiTrack('cta_whatsapp_dor')" · class="sellbot-wpp-open"</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 04 — ATENDIMENTO
+  ============================================================ -->
+  <div class="block section-anchor" id="atendimento">
+    <div class="block-header">
+      <div class="block-num block-num-blue">04</div>
+      <div class="block-title">Atendimento — Como Funciona</div>
+      <span class="block-tag">id: #atendimento · fundo: #F7F8F5</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeito de Entrada — riseUp sequencial + linha se desenhando</h3>
+      <p>Steps entram em sequência com delay de <strong>150ms entre cada</strong>: <code>translateY(28px) opacity(0) → 0 opacity(1)</code>. A linha conectora horizontal entre os steps anima <strong>width de 0% para 100%</strong> com delay encadeado, criando efeito de "linha se desenhando da esquerda para a direita". Usar <code>overflow: hidden</code> no container da linha e animar com classe <code>.is-visible</code>.</p>
+
+      <h3>Conteúdo — Manter Palavra por Palavra</h3>
+      <div class="content-item"><strong>Eyebrow:</strong> "Atendimento"</div>
+      <div class="content-item"><strong>H2:</strong> "Como funciona o atendimento no ISBI Odonto?"</div>
+      <div class="content-item"><strong>Lead:</strong> "O cuidado começa com uma escuta atenta e uma avaliação profissional. A partir disso, cada caso é planejado de forma individual, considerando saúde bucal, função, estética, exames necessários e objetivos do paciente."</div>
+
+      <h3>4 Steps da Timeline</h3>
+      <p>Grid: <code>repeat(4, 1fr)</code> desktop · <code>repeat(2, 1fr)</code> tablet · <code>1fr</code> mobile. Cada step: fundo branco, border 1px solid #E8ECE8, border-radius 18px, padding 26px 22px. Número: círculo 48×48px, fundo <strong>#086948</strong>, cor branca, Plus Jakarta Sans 700, box-shadow <code>0 8px 18px -8px rgba(8,90,60,0.6)</code>. Linha conectora: posição absolute, top 50px, right -13px, width 26px, height 2px, background <strong>#cfe0d6</strong> (ocultar no último step e em mobile).</p>
+      <div class="content-item"><strong>1 — Avaliação inicial:</strong> "Entendimento das necessidades, histórico, queixas principais e condição bucal do paciente."</div>
+      <div class="content-item"><strong>2 — Diagnóstico e planejamento:</strong> "Análise clínica, exames quando necessários e definição da melhor conduta para cada caso."</div>
+      <div class="content-item"><strong>3 — Tratamento indicado:</strong> "Execução das etapas planejadas com acompanhamento profissional e orientação ao paciente."</div>
+      <div class="content-item"><strong>4 — Acompanhamento e manutenção:</strong> "Orientações para preservar a saúde bucal, acompanhar resultados e manter o cuidado ao longo do tempo."</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 05 — ESTRUTURA / DIFERENCIAIS
+  ============================================================ -->
+  <div class="block section-anchor" id="estrutura">
+    <div class="block-header">
+      <div class="block-num block-num-purple">05</div>
+      <div class="block-title">Nossa Estrutura — Diferenciais</div>
+      <span class="block-tag">id: #diferenciais · fundo: branco</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeitos de Entrada — Dois tipos distintos</h3>
+      <p><strong>Cards "DESTAQUE" (linha 1):</strong> <code>clip-path: inset(0 100% 0 0) → inset(0 0% 0 0)</code> — revelação da esquerda para direita, duração 0.65s. Card 2 com delay de 0.15s em relação ao card 1.</p>
+      <p><strong>Cards menores (linha 2):</strong> <code>scale(0.95) opacity(0) → scale(1) opacity(1)</code>, stagger de 100ms por card, duração 0.5s cada.</p>
+      <p><strong>Callouts Copel e Neodent:</strong> <code>opacity(0) → opacity(1)</code> simples, delay após os cards, duração 0.4s.</p>
+
+      <h3>Conteúdo — Manter Palavra por Palavra</h3>
+      <div class="content-item"><strong>Eyebrow:</strong> "Nossa estrutura"</div>
+      <div class="content-item"><strong>H2:</strong> "Estrutura completa para cuidar do seu sorriso com mais segurança"</div>
+
+      <h3>Linha 1 — 2 Cards Destacados</h3>
+      <p>Grid <code>repeat(2, 1fr)</code>. Fundo: <code>linear-gradient(135deg, #f7faf8 0%, #e8f2ed 100%)</code>. Border: <code>1px solid #cfe0d6</code>. Border-radius 26px. Padding 36px 32px. Badge antes do ícone.</p>
+      <div class="content-item">Badge <strong>"DESTAQUE"</strong> · ícone frasco/laboratório · <strong>H3:</strong> "Laboratório anexo ao consultório" · <strong>P:</strong> "O laboratório anexo ao consultório aproxima as etapas clínicas e laboratoriais, contribuindo para mais precisão, agilidade e personalização em diferentes fases do tratamento."</div>
+      <div class="content-item">Badge <strong>"ESTRUTURA"</strong> · ícone scanner/cirurgia · <strong>H3:</strong> "Centro cirúrgico próprio" · <strong>P:</strong> "O centro cirúrgico da clínica permite realizar etapas cirúrgicas com mais previsibilidade, suporte e segurança para casos que exigem maior estrutura."</div>
+
+      <h3>Linha 2 — 3 Cards Normais</h3>
+      <p>Grid <code>repeat(3, 1fr)</code>. Fundo branco. Border 1px solid #E8ECE8. Border-radius 18px. Padding 32px 28px. Ícone 56×56px com fundo <code>linear-gradient(150deg, #086948, #035F42)</code>, cor branca.</p>
+      <div class="content-item">ícone equipe · <strong>"Avaliação com o próprio profissional"</strong> · "A avaliação é feita pelo profissional responsável pelo planejamento e condução do tratamento, trazendo mais clareza no diagnóstico e na tomada de decisão."</div>
+      <div class="content-item">ícone coração · <strong>"Atendimento humanizado"</strong> · "Um atendimento próximo, claro e cuidadoso para que o paciente entenda cada etapa do tratamento e se sinta acolhido durante sua jornada."</div>
+      <div class="content-item">ícone pin/localização · <strong>"Localização estratégica"</strong> · "Localizado no bairro Santa Quitéria, o ISBI Odonto tem fácil acesso para pacientes de diferentes regiões de Curitiba."</div>
+
+      <h3>Callout Copel</h3>
+      <p>Card horizontal <code>grid-template-columns: 1.35fr 0.85fr</code>. Fundo <code>linear-gradient(135deg, #f7faf8, #e8f2ed)</code>. Border <code>1px solid #cfe0d6</code>. Border-radius 26px. Padding 24px 28px.</p>
+      <div class="content-item">Esq: Eyebrow "CREDENCIAMENTO" · <strong>H3:</strong> "Clínica credenciada para implantes pela Copel" · <strong>P:</strong> "Além da estrutura clínica e cirúrgica, o ISBI Odonto é credenciado pela Copel para tratamentos com implantes dentários." | Dir: <code>&lt;img src="assets/Copel.svg.png" alt="Copel"&gt;</code> max-width 220px, centralizada</div>
+
+      <h3>Callout Neodent</h3>
+      <div class="content-item">Mesma estrutura do callout Copel. Esq: Eyebrow "MATERIAIS" · <strong>H3:</strong> "Componentes e implantes Neodent" · <strong>P:</strong> "O ISBI Odonto trabalha exclusivamente com componentes e implantes da Neodent, priorizando padronização, previsibilidade e segurança no planejamento reabilitador." | Dir: <code>&lt;img src="assets/logo-neodent.webp" alt="Neodent"&gt;</code> max-width 220px</div>
+
+      <h3>CTA Abaixo</h3>
+      <p>Botão WhatsApp "Gostaria de mais informações" centralizado · onclick="isbiTrack('cta_whatsapp_diferenciais')" · class="sellbot-wpp-open"</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 06 — BLOCO ESCURO
+  ============================================================ -->
+  <div class="block section-anchor" id="darkblock">
+    <div class="block-header">
+      <div class="block-num block-num-orange">06</div>
+      <div class="block-title">Planejamento Individualizado — Bloco Escuro</div>
+      <span class="block-tag">fundo: imagem com overlay verde</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeito de Entrada — wordReveal (único na página)</h3>
+      <p>As palavras do H2 são divididas em <code>&lt;span&gt;</code> individuais via JS. Cada span tem <code>display: inline-block; overflow: hidden</code> e o texto interno faz <code>translateY(110%) → translateY(0)</code> em sequência de <strong>60ms por palavra</strong>. Sensação de "texto caindo no lugar". O parágrafo lead entra com simples <code>opacity(0) → 1</code> após delay de 0.6s. O botão entra com <code>scale(0.9) opacity(0) → scale(1) opacity(1)</code> após 0.9s.</p>
+
+      <h3>Fundo</h3>
+      <div class="code-block"><span class="c-comment">/* Elemento .darkblock */</span>
+background:
+  <span class="c-orange">url</span>(<span class="c-yellow">"assets/call_institucional.webp"</span>) no-repeat right center / cover fixed;
+
+<span class="c-comment">/* Pseudo-elemento ::before */</span>
+background:
+  <span class="c-green">linear-gradient</span>(90deg,
+    rgba(3,95,66,.92) 0%, rgba(3,95,66,.86) 34%,
+    rgba(3,95,66,.62) 60%, rgba(3,95,66,.3) 100%),
+  <span class="c-green">linear-gradient</span>(180deg, rgba(0,0,0,.18), rgba(0,0,0,.28));</div>
+
+      <h3>Conteúdo — Manter Palavra por Palavra</h3>
+      <div class="content-item"><strong>Eyebrow</strong> (cor <em>#4FC346</em>): "Planejamento individualizado"</div>
+      <div class="content-item"><strong>H2</strong> (cor branco): "Cada paciente precisa de um plano de cuidado próprio"</div>
+      <div class="content-item"><strong>Lead</strong> (<em>rgba(255,255,255,0.82)</em>): "Antes de indicar qualquer tratamento, é essencial avaliar a saúde bucal, a função mastigatória, as necessidades estéticas e os objetivos de cada paciente. No ISBI Odonto, o planejamento é feito de forma individualizada, com orientação clara sobre as possibilidades de tratamento."</div>
+      <div class="content-item"><strong>Botão</strong> (background branco, cor #035F42): "Agendar pelo WhatsApp" com ícone WhatsApp · onclick="isbiTrack('cta_whatsapp_avaliacao')" · class="sellbot-wpp-open"</div>
+      <p style="margin-top:12px">Conteúdo alinhado à esquerda, max-width 620px.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 07 — SOBRE
+  ============================================================ -->
+  <div class="block section-anchor" id="sobre">
+    <div class="block-header">
+      <div class="block-num block-num-green">07</div>
+      <div class="block-title">Sobre o ISBI</div>
+      <span class="block-tag">id: #sobre · fundo: branco</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeitos de Entrada — wipeLeft + wipeTop (distintos entre si)</h3>
+      <p><strong>Coluna de imagem (esquerda):</strong> <code>clip-path: inset(0 0 0 100%) → inset(0 0 0 0%)</code> — wipe da direita para esquerda, duração 0.8s. Revela a imagem como se uma cortina abrisse.</p>
+      <p><strong>Coluna de texto (direita):</strong> <code>clip-path: inset(0 0 100% 0) → inset(0 0 0% 0)</code> — wipe de baixo para cima, duração 0.8s, delay 0.2s após a imagem.</p>
+
+      <h3>Layout</h3>
+      <p>Grid: <code>grid-template-columns: 1fr 1fr</code>, gap <code>clamp(36px, 5vw, 68px)</code>, align-items center. No tablet/mobile: coluna única (texto acima, carrossel abaixo).</p>
+
+      <h3>Coluna Esquerda — Carrossel de 3 Fotos</h3>
+      <p>Container: overflow hidden, border-radius 30px, width min(100%, 420px). Track interno: display flex, transition <code>transform 0.55s cubic-bezier(0.22, 0.8, 0.3, 1)</code>. Cada slide: flex 0 0 100%, aspect-ratio 4/3. Autoplay a cada 4.2s (pausar no hover). Botões prev/next sobrepostos: 44×44px, fundo rgba(255,255,255,0.94), border-radius 50%, cor #086948. Dots de navegação abaixo.</p>
+      <div class="content-item"><code>assets/sobre2.webp</code> — "Detalhe do espaço clínico do ISBI Odonto"</div>
+      <div class="content-item"><code>assets/sobre1.webp</code> — "Ambiente interno do ISBI Odonto"</div>
+      <div class="content-item"><code>assets/centro-cirurgico.jpeg</code> — "Centro cirúrgico do ISBI Odonto"</div>
+
+      <h3>Coluna Direita — Texto</h3>
+      <div class="content-item"><strong>Eyebrow:</strong> "Sobre"</div>
+      <div class="content-item"><strong>H2:</strong> "O ISBI Odonto une experiência, estrutura e cuidado em Curitiba"</div>
+      <div class="content-item"><strong>Lead:</strong> "Somos uma clínica odontológica com foco em reabilitação oral, próteses, implantes dentários e tratamentos voltados à recuperação da função mastigatória, saúde bucal e estética do sorriso."</div>
+      <div class="content-item"><strong>P:</strong> "Localizada no bairro Santa Quitéria, com fácil acesso para pacientes de diferentes regiões de Curitiba, a clínica atua há 23 anos com experiência clínica e planejamento personalizado."</div>
+      <div class="content-item"><strong>P:</strong> "Entre os diferenciais da nossa estrutura estão o laboratório de prótese próprio, o centro cirúrgico e a integração entre diagnóstico, etapas clínicas, procedimentos cirúrgicos e reabilitação protética no mesmo local."</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 08 — PROFISSIONAIS
+  ============================================================ -->
+  <div class="block section-anchor" id="profissionais">
+    <div class="block-header">
+      <div class="block-num block-num-purple">08</div>
+      <div class="block-title">Nossos Profissionais</div>
+      <span class="block-tag">id: #profissionais · fundo: gradiente suave</span>
+    </div>
+    <div class="block-body">
+      <h3>Fundo</h3>
+      <p><code>background: linear-gradient(180deg, #f5f8f3 0%, #edf4ef 100%)</code></p>
+
+      <h3>Efeitos de Entrada — slideFromLeft + slideFromRight (opostos)</h3>
+      <p>Card 1 (Dr. Luciano): <code>translateX(-60px) opacity(0) → translateX(0) opacity(1)</code>, duração 0.7s.</p>
+      <p>Card 2 (Dra. Stéphanie): <code>translateX(60px) opacity(0) → translateX(0) opacity(1)</code>, duração 0.7s, delay 0.15s. A entrada simétrica de lados opostos cria composição visual elegante.</p>
+
+      <h3>Cabeçalho da Seção</h3>
+      <div class="content-item"><strong>Eyebrow:</strong> "Nossos profissionais"</div>
+      <div class="content-item"><strong>H2:</strong> "Profissionais responsáveis pelo seu atendimento"</div>
+      <div class="content-item"><strong>Lead:</strong> "Conheça os profissionais que atuam no ISBI Odonto com foco em reabilitação oral, implantes dentários, próteses, odontologia estética, planejamento individualizado e atendimento acolhedor."</div>
+
+      <h3>Layout dos Cards</h3>
+      <p>Grid por card: <code>grid-template-columns: minmax(260px, 380px) minmax(0, 1fr)</code>. Card reverso (Dra. Stéphanie): <code>minmax(0, 1fr) minmax(260px, 380px)</code>. Fundo branco. Border 1px solid #E8ECE8. Border-radius 28px. Padding 26px. Box-shadow: <code>0 14px 40px -18px rgba(15,40,30,0.20)</code>. No mobile: coluna única.</p>
+
+      <h3>Card 1 — Dr. Luciano Zanetti</h3>
+      <div class="content-item">Foto: <code>assets/luciano.webp</code> — aspect-ratio 4/5, object-fit cover, object-position center top, border-radius 20px, min-height 360px</div>
+      <div class="content-item"><strong>H3:</strong> "Dr. Luciano Zanetti"</div>
+      <div class="content-item"><strong>Role</strong> (cor <em>#086948</em>): "Cirurgião-dentista - CRO 11612/PR"</div>
+      <div class="content-item"><strong>Subtitle:</strong> "Responsável técnico do ISBI - Instituto Sul Brasileiro de Implantodontia"</div>
+      <div class="content-item"><strong>P1:</strong> "O Dr. Luciano Zanetti é cirurgião-dentista graduado pela Universidade Estadual de Ponta Grossa, em 1997, e especialista em Implantodontia pela Universidade Federal do Paraná."</div>
+      <div class="content-item"><strong>P2:</strong> "Com 28 anos de experiência em implantes dentários, atua no planejamento e execução de tratamentos voltados à reabilitação oral, devolvendo função, segurança e qualidade de vida aos pacientes por meio de soluções com implantes e próteses."</div>
+      <div class="content-item"><strong>P3:</strong> "Sua trajetória profissional está diretamente ligada à história do ISBI, onde também exerce a função de responsável técnico da clínica."</div>
+
+      <h3>Card 2 — Dra. Stéphanie Padilha Geraldini (layout invertido)</h3>
+      <div class="content-item">Foto: <code>assets/stephanie.webp</code> — mesmas configurações. No layout invertido, a foto fica à direita.</div>
+      <div class="content-item"><strong>H3:</strong> "Dra. Stéphanie Padilha Geraldini"</div>
+      <div class="content-item"><strong>Role</strong> (cor <em>#086948</em>): "Cirurgiã-dentista - CRO-PR 21043"</div>
+      <div class="content-item"><strong>P1:</strong> "A Dra. Stéphanie Padilha Geraldini é cirurgiã-dentista formada pela Universidade Tuiuti do Paraná, em 2010."</div>
+      <div class="content-item"><strong>P2:</strong> "É especialista em Prótese Dentária e atua também nas áreas de odontologia restauradora e estética, com formação complementar em próteses sobre implante. Com 16 anos de experiência em reabilitação oral e estética dental, realiza tratamentos voltados à recuperação do sorriso, função mastigatória e harmonia estética, sempre com planejamento individualizado para cada paciente."</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 09 — TRATAMENTOS
+  ============================================================ -->
+  <div class="block section-anchor" id="tratamentos">
+    <div class="block-header">
+      <div class="block-num block-num-blue">09</div>
+      <div class="block-title">Tratamentos</div>
+      <span class="block-tag">id: #tratamentos · fundo: branco</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeito de Entrada — scaleDiagonal (onda diagonal única)</h3>
+      <p>Cada card entra com <code>scale(0.92) opacity(0) → scale(1) opacity(1)</code>. O delay é calculado como <strong>(coluna + linha) × 60ms</strong>, criando uma onda diagonal da célula [0,0] até [2,2]. Isso é radicalmente diferente de qualquer outro efeito na página.</p>
+
+      <h3>Conteúdo</h3>
+      <div class="content-item"><strong>Eyebrow:</strong> "Tratamentos"</div>
+      <div class="content-item"><strong>H2:</strong> "Tratamentos que podem fazer parte do seu planejamento odontológico"</div>
+      <div class="content-item"><strong>Lead:</strong> "O ISBI Odonto reúne diferentes áreas da odontologia para oferecer um cuidado mais completo, sempre a partir de uma avaliação individualizada."</div>
+
+      <h3>9 Cards do Grid</h3>
+      <p>Grid: <code>repeat(3, 1fr)</code> desktop · <code>repeat(2, 1fr)</code> tablet · <code>1fr</code> mobile. Gap 18px. Cards normais: fundo branco, border 1px solid #E8ECE8, border-radius 18px, padding 28px 26px. Ícone 46×46px, fundo #EEF4F0, cor #086948.</p>
+      <div class="content-item">ícone dente · <strong>"Implantes dentários"</strong> · "Indicados para substituir um ou mais dentes perdidos, conforme avaliação clínica e planejamento profissional."</div>
+      <div class="content-item">ícone coroa · <strong>"Próteses dentárias"</strong> · "Soluções para recuperar função mastigatória, estética e conforto em diferentes necessidades de reabilitação oral."</div>
+      <div class="content-item">ícone arco dental · <strong>"Prótese sobre implante"</strong> · "Alternativa para reabilitação com mais estabilidade em relação a próteses removíveis, quando indicada para o caso."</div>
+      <div class="content-item">ícone cubo · <strong>"Prótese protocolo"</strong> · "Solução fixa sobre implantes para casos selecionados, de acordo com avaliação profissional."</div>
+      <div class="content-item">ícone seta para cima · <strong>"Reabilitação oral"</strong> · "Planejamento integrado para recuperar função, estética e equilíbrio do sorriso em casos mais completos."</div>
+      <div class="content-item">ícone sorriso · <strong>"Odontologia estética e restauradora"</strong> · "Tratamentos voltados à harmonia do sorriso, restauração de dentes e melhora estética, sempre com indicação individual."</div>
+      <div class="content-item">ícone estrela · <strong>"Clareamento dental"</strong> · "Procedimento estético indicado para melhorar a tonalidade dos dentes, quando adequado para o paciente."</div>
+      <div class="content-item">ícone coração · <strong>"Prevenção e manutenção"</strong> · "Cuidados periódicos para acompanhar a saúde bucal, prevenir problemas e manter os resultados dos tratamentos."</div>
+      <div class="content-item" style="border-left: 3px solid var(--accent)"><strong>Card especial</strong> — fundo <em>#EEF4F0</em>, border <em>#cfe0d6</em>, texto centralizado. Ícone escudo (fundo branco). <strong>"Indicação individual"</strong> · "A indicação de qualquer tratamento depende da avaliação profissional, exames necessários e planejamento personalizado para cada paciente."</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 10 — DEPOIMENTOS
+  ============================================================ -->
+  <div class="block section-anchor" id="depoimentos">
+    <div class="block-header">
+      <div class="block-num block-num-yellow">10</div>
+      <div class="block-title">Depoimentos — Prova Social</div>
+      <span class="block-tag">id: #depoimentos · fundo: #F7F8F5</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeito de Entrada — unblur (único na página)</h3>
+      <p>Cards entram com <code>filter: blur(6px) opacity(0) → blur(0px) opacity(1)</code>, duração 0.5s. Sem translação. A sensação de "desfocar para dentro" é inédita neste site e cria percepção diferenciada de presença.</p>
+
+      <h3>Conteúdo do Cabeçalho</h3>
+      <div class="content-item"><strong>Eyebrow:</strong> "Depoimentos"</div>
+      <div class="content-item"><strong>Logo Google:</strong> <code>&lt;img src="assets/google.webp" width="160"&gt;</code> exibida acima do H2, centralizada</div>
+      <div class="content-item"><strong>H2:</strong> "Pacientes que confiam no ISBI Odonto"</div>
+      <div class="content-item"><strong>Lead:</strong> "Depoimentos de pacientes atendidos na clínica. As avaliações podem ser conferidas diretamente no Google."</div>
+
+      <h3>Carrossel de Reviews</h3>
+      <p>Autoplay 4.5s (pausar hover/focus). Transição <code>transform 0.6s cubic-bezier(0.22, 0.8, 0.3, 1)</code>. Colunas: desktop 3 · tablet 2 · mobile 1. Dots abaixo. Cards: fundo branco, border 1px solid #E8ECE8, border-radius 26px, padding 30px 28px. Estrelas: cor <strong>#F5B100</strong>.</p>
+      <div class="content-item">⭐⭐⭐⭐⭐ "ótimo atendimento, excelente trabalho os doutores muito queridos, profissionais eficientes." — <strong>Nicolly Senke Ribeiro</strong></div>
+      <div class="content-item">⭐⭐⭐⭐⭐ "Atendimento da Dra. Camila foi excelente. Fiz profilaxia e ainda vou fazer clareamento! As expectativas foram superadas!" — <strong>Angela Gomes da Rocha</strong></div>
+      <div class="content-item">⭐⭐⭐⭐⭐ "Excelente. Equipe profissional, atenciosos e educados. Fiquei muito satisfeita com o trabalho do dr. Luciano. Muito obrigada." — <strong>Janete Garcia</strong></div>
+      <div class="content-item">⭐⭐⭐⭐⭐ "Excelente atendimento por todos, muito satisfeita com o resultado do tratamento. Obrigada Dr. Luciano Zanetti, profissional seguro do que faz, que transmite tranquilidade e confiança ao paciente. Clínica bem localizada e tranquilidade para estacionar. Obrigada!" — <strong>Cleonice Paes de Freiria</strong></div>
+      <div class="content-item">⭐⭐⭐⭐⭐ "Me desloco de Florianópolis para tratamento nesta clínica devido sua excelência." — <strong>Telmo Koerich</strong></div>
+      <div class="content-item">⭐⭐⭐⭐⭐ "Excelente atendimento, muito atenciosos, muito satisfeito com os resultados do meu tratamento." — <strong>Assir Soares</strong></div>
+
+      <h3>Link Abaixo</h3>
+      <p>Botão outline: "Ver avaliações no Google" → <code>https://www.google.com/maps/search/ISBI+Odonto+Curitiba</code> · onclick="isbiTrack('cta_maps')"</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 11 — LOCALIZAÇÃO
+  ============================================================ -->
+  <div class="block section-anchor" id="localizacao">
+    <div class="block-header">
+      <div class="block-num block-num-green">11</div>
+      <div class="block-title">Localização</div>
+      <span class="block-tag">id: #localizacao · fundo: branco</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeitos de Entrada — zoomOut mapa + slideRight card</h3>
+      <p><strong>Mapa:</strong> <code>scale(1.04) opacity(0) → scale(1) opacity(1)</code>, duração 0.6s. Simula "abrir o mapa".</p>
+      <p><strong>Card de informações:</strong> <code>translateX(40px) opacity(0) → translateX(0) opacity(1)</code>, delay 0.2s após o mapa.</p>
+
+      <h3>Conteúdo — Manter Palavra por Palavra</h3>
+      <div class="content-item"><strong>Eyebrow:</strong> "Localização"</div>
+      <div class="content-item"><strong>H2:</strong> "Clínica odontológica no bairro Santa Quitéria, em Curitiba"</div>
+      <div class="content-item"><strong>Lead:</strong> "O ISBI Odonto está localizado no bairro Santa Quitéria, com fácil acesso para pacientes de regiões próximas como Água Verde, Vila Isabel, Fazendinha, Ecoville, Arthur Bernardes e Mário Tourinho."</div>
+
+      <h3>Grid</h3>
+      <p><code>grid-template-columns: 1.4fr 0.9fr</code>, gap 26px. Mobile: coluna única.</p>
+
+      <h3>Mapa</h3>
+      <div class="code-block"><span class="c-blue">&lt;iframe</span>
+  src=<span class="c-green">"https://www.google.com/maps?q=R.%20Prof.%20Ulisses%20Vieira%2C%201315%20-%20Santa%20Quit%C3%A9ria%2C%20Curitiba%20-%20PR%2C%2080310-120&output=embed"</span>
+  title=<span class="c-green">"Mapa ISBI Odonto"</span>
+  loading=<span class="c-green">"lazy"</span>
+  referrerpolicy=<span class="c-green">"no-referrer-when-downgrade"</span>
+<span class="c-blue">&gt;&lt;/iframe&gt;</span></div>
+      <p>Width 100%, min-height 380px, border-radius 26px, overflow hidden, border 1px solid #E8ECE8.</p>
+
+      <h3>Card de Informações</h3>
+      <div class="content-item"><strong>H3:</strong> "ISBI Odonto"</div>
+      <div class="content-item"><strong>Endereço:</strong> "R. Prof. Ulisses Vieira, 1315 - Santa Quitéria, Curitiba - PR, 80310-120"</div>
+      <div class="content-item">ícone relógio · <strong>"Atendimento"</strong> · "De segunda a sexta-feira"</div>
+      <div class="content-item">ícone rota · <strong>"Santa Quitéria"</strong> · "Fácil acesso para pacientes de diferentes regiões"</div>
+      <div class="content-item"><strong>Texto:</strong> "Clique para ligar ou fale pelo WhatsApp."</div>
+      <div class="content-item"><strong>Botão 1</strong> (verde): "Clique para ligar" → <code>href="tel:0413228131"</code> · onclick="isbiTrack('cta_ligar_localizacao')"</div>
+      <div class="content-item"><strong>Botão 2</strong> (WhatsApp #25D366): "Agendar pelo WhatsApp" → href wa.me · onclick="isbiTrack('cta_whatsapp_localizacao')" · class="sellbot-wpp-open"</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 12 — FAQ
+  ============================================================ -->
+  <div class="block section-anchor" id="faq">
+    <div class="block-header">
+      <div class="block-num block-num-orange">12</div>
+      <div class="block-title">Dúvidas Frequentes</div>
+      <span class="block-tag">id: #duvidas · fundo: #F7F8F5</span>
+    </div>
+    <div class="block-body">
+      <h3>Efeito de Entrada — slideFromLeft no título (apenas)</h3>
+      <p>Apenas o título da seção entra com <code>translateX(-30px) opacity(0) → 0 opacity(1)</code>. Os itens do accordion <strong>não têm efeito de entrada</strong> — respondem somente ao clique do usuário.</p>
+
+      <h3>Comportamento do Accordion</h3>
+      <p>Clique na pergunta: expande resposta com <code>max-height: 0 → scrollHeight</code>, <code>transition: max-height 0.35s ease</code>. Ícone chevron: rotaciona 180° quando aberto. <strong>Apenas um item aberto por vez</strong> — fechar o anterior ao abrir o próximo. Adicionar classe <code>.is-open</code> ao item ativo.</p>
+
+      <h3>8 Perguntas e Respostas — Manter Palavra por Palavra</h3>
+      <div class="content-item"><strong>O ISBI Odonto atende quais tratamentos?</strong> / "O ISBI Odonto atua com reabilitação oral, implantes dentários, próteses dentárias, próteses sobre implante, odontologia restauradora, estética dental, clareamento e cuidados preventivos. A indicação de cada tratamento depende de avaliação profissional."</div>
+      <div class="content-item"><strong>A clínica atende somente implantes?</strong> / "Não. Embora o ISBI tenha forte atuação em implantodontia e reabilitação oral, a clínica reúne diferentes especialidades odontológicas para oferecer um cuidado mais completo em um único local."</div>
+      <div class="content-item"><strong>Preciso passar por avaliação antes do orçamento?</strong> / "Sim. O orçamento depende da análise individual, condição bucal, exames necessários, tipo de tratamento indicado e planejamento profissional. A avaliação ajuda a definir a melhor conduta para cada caso."</div>
+      <div class="content-item"><strong>A clínica possui laboratório de prótese?</strong> / "Sim. A clínica conta com laboratório anexo ao consultório, o que contribui para maior integração entre dentista e laboratório em diferentes etapas do tratamento."</div>
+      <div class="content-item"><strong>O ISBI Odonto tem centro cirúrgico próprio?</strong> / "Sim. A clínica possui centro cirúrgico próprio, permitindo realizar procedimentos indicados com mais estrutura, previsibilidade e suporte."</div>
+      <div class="content-item"><strong>Onde fica o ISBI Odonto?</strong> / "O ISBI Odonto fica na R. Prof. Ulisses Vieira, 1315, no bairro Santa Quitéria, em Curitiba - PR."</div>
+      <div class="content-item"><strong>Como faço para agendar uma avaliação?</strong> / "Você pode entrar em contato pelo telefone ou WhatsApp da clínica: (41) 3228-1313. A equipe irá orientar sobre horários e informações necessárias para o atendimento."</div>
+      <div class="content-item"><strong>A indicação de tratamento é igual para todos os pacientes?</strong> / "Não. Cada paciente precisa de uma avaliação individualizada. O planejamento considera saúde bucal, histórico, exames, função mastigatória, estética e objetivos do paciente."</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 13 — CTA FINAL
+  ============================================================ -->
+  <div class="block section-anchor" id="cta">
+    <div class="block-header">
+      <div class="block-num block-num-green">13</div>
+      <div class="block-title">CTA Final</div>
+      <span class="block-tag">fundo: gradiente verde</span>
+    </div>
+    <div class="block-body">
+      <h3>Fundo</h3>
+      <p><code>background: linear-gradient(160deg, #086948 0%, #035F42 100%)</code>. Pseudo-elemento <code>::before</code>: <code>radial-gradient(50% 60% at 85% 0%, rgba(79,195,70,0.22), transparent 60%)</code>, opacity 0.6 (decorativo). Seção centralizada, color: white.</p>
+
+      <h3>Efeito de Entrada — trackIn no H2 (único na página)</h3>
+      <p>O H2 entra com <code>letter-spacing: 0.15em opacity(0) → letter-spacing: -0.02em opacity(1)</code>, duração 0.7s. O tracking comprimindo transmite intenção de chegada. O parágrafo: opacity simples, delay 0.3s. O botão: <code>scale(0.9) opacity(0) → scale(1) opacity(1)</code>, delay 0.5s.</p>
+
+      <h3>Animação Perpétua do Botão</h3>
+      <div class="code-block"><span class="c-blue">@keyframes</span> pulse {
+  0%, 100% { box-shadow: 0 12px 28px -10px rgba(37,211,102,.5); }
+  50%       { box-shadow: 0 16px 40px -8px rgba(37,211,102,.8); }
+}
+.cta-btn { animation: pulse 2.8s ease-in-out infinite; }</div>
+
+      <h3>Conteúdo — Manter Palavra por Palavra</h3>
+      <div class="content-item"><strong>Eyebrow</strong> (cor <em>#4FC346</em>): "Dê o primeiro passo"</div>
+      <div class="content-item"><strong>H2</strong> (branco): "Cuide da sua saúde bucal com planejamento e acolhimento"</div>
+      <div class="content-item"><strong>Lead</strong> (<em>rgba(255,255,255,0.85)</em>): "Converse com a equipe do ISBI Odonto para receber mais informações, agendar uma avaliação e entender quais tratamentos podem ser indicados para o seu caso."</div>
+      <div class="content-item"><strong>Botão</strong> (branco, cor <em>#035F42</em>): "Gostaria de mais informações" · ícone WhatsApp · onclick="isbiTrack('cta_whatsapp_final')" · class="sellbot-wpp-open"</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO 14 — FOOTER
+  ============================================================ -->
+  <div class="block section-anchor" id="footer">
+    <div class="block-header">
+      <div class="block-num block-num-red">14</div>
+      <div class="block-title">Footer</div>
+      <span class="block-tag">fundo: #12372c</span>
+    </div>
+    <div class="block-body">
+      <h3>Layout</h3>
+      <p>Grid: <code>grid-template-columns: 1.6fr 1fr 1fr</code>, gap 40px. Mobile: coluna única, tudo centralizado.</p>
+
+      <h3>Coluna 1 — Brand</h3>
+      <div class="content-item"><strong>Logo branca:</strong> <code>&lt;img src="assets/logo-isbi-white.png"&gt;</code> height 42px, margin-bottom 18px</div>
+      <div class="content-item"><strong>P:</strong> "Odontologia integrada, reabilitação oral, prótese, implantes dentários e cuidados estéticos em uma estrutura completa em Curitiba, com laboratório anexo, centro cirúrgico próprio e atendimento humanizado."</div>
+
+      <h3>Coluna 2 — Contato</h3>
+      <div class="content-item"><strong>H4:</strong> "Contato" (uppercase, letter-spacing)</div>
+      <div class="content-item">ícone telefone · <code>&lt;a href="tel:04132281313"&gt;(41) 3228-1313&lt;/a&gt;</code></div>
+      <div class="content-item">ícone pin · "R. Prof. Ulisses Vieira, 1315 - Santa Quitéria, Curitiba - PR"</div>
+      <div class="content-item">ícone relógio · "Segunda a sexta-feira"</div>
+
+      <h3>Coluna 3 — Responsável Técnico</h3>
+      <div class="content-item"><strong>H4:</strong> "Responsável técnico"</div>
+      <div class="content-item">ícone escudo · "Dr. Luciano Zanetti - CRO/PR 11612"</div>
+      <div class="content-item">ícone grid · "CRO da clínica: 1106"</div>
+
+      <h3>Footer Bottom</h3>
+      <p>Border-top: 1px solid rgba(255,255,255,0.14). Padding-top 24px. Font-size 0.82rem. Cor rgba(255,255,255,0.6).</p>
+      <div class="content-item">"© <code>&lt;span id='year'&gt;&lt;/span&gt;</code> ISBI - Instituto Sul-Brasileiro de Implantodontia. Todos os direitos reservados. Desenvolvido por SuperDental®" — year preenchido por JS: <code>document.getElementById('year').textContent = new Date().getFullYear()</code></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TABELA DE EFEITOS
+  ============================================================ -->
+  <div class="block section-anchor" id="efeitos">
+    <div class="block-header">
+      <div class="block-num block-num-purple">★</div>
+      <div class="block-title">Tabela de Efeitos de Entrada — Nenhum Repetido</div>
+    </div>
+    <div class="block-body">
+      <div class="callout callout-info">
+        <div class="callout-icon">ℹ</div>
+        <p>Usar <code>IntersectionObserver</code> com <code>threshold: 0.08</code> e <code>rootMargin: "0px 0px -40px 0px"</code> para disparar todos os efeitos. Respeitar <code>@media (prefers-reduced-motion: reduce)</code> — remover todas as animações. Safety net: após 2.5s, forçar todos os elementos como visíveis via JS.</p>
+      </div>
+      <table class="effect-table">
+        <thead>
+          <tr><th>Seção</th><th>Efeito &amp; Keyframe</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Hero (copy)</td><td><span class="effect-name">slideInLeft</span> — translateX(-40px) opacity(0→1), delay sequencial 100ms/filho, CSS animation pura</td></tr>
+          <tr><td>Números</td><td><span class="effect-name">fadeIn</span> — apenas opacity(0→1), 0.5s. Números contam via JS (0→valor, 1.8s, easing quadrático)</td></tr>
+          <tr><td>Cuidado completo (cards)</td><td><span class="effect-name">riseUp stagger</span> — translateY(32px) opacity(0→1), delay 80ms × índice</td></tr>
+          <tr><td>Timeline (steps + linha)</td><td><span class="effect-name">riseUp sequencial</span> + linha conectora: width 0→100% com delay encadeado</td></tr>
+          <tr><td>Diferenciais (cards featured)</td><td><span class="effect-name">revealRight</span> — clip-path: inset(0 100% 0 0 → 0 0% 0 0), 0.65s</td></tr>
+          <tr><td>Diferenciais (cards menores)</td><td><span class="effect-name">scaleIn</span> — scale(0.95) opacity(0→1), stagger 100ms</td></tr>
+          <tr><td>Bloco escuro (H2)</td><td><span class="effect-name">wordReveal</span> — cada palavra em span, translateY(110%→0), 60ms/palavra</td></tr>
+          <tr><td>Sobre (imagem carrossel)</td><td><span class="effect-name">wipeLeft</span> — clip-path: inset(0 0 0 100%→0%), 0.8s</td></tr>
+          <tr><td>Sobre (texto)</td><td><span class="effect-name">wipeTop</span> — clip-path: inset(0 0 100%→0% 0), 0.8s, delay 0.2s</td></tr>
+          <tr><td>Profissional 1</td><td><span class="effect-name">slideFromLeft</span> — translateX(-60px) opacity(0→1)</td></tr>
+          <tr><td>Profissional 2</td><td><span class="effect-name">slideFromRight</span> — translateX(60px) opacity(0→1), delay 0.15s</td></tr>
+          <tr><td>Tratamentos (grid)</td><td><span class="effect-name">scaleDiagonal</span> — scale(0.92) opacity(0→1), delay (col+linha)×60ms</td></tr>
+          <tr><td>Depoimentos</td><td><span class="effect-name">unblur</span> — blur(6px) opacity(0) → blur(0) opacity(1), sem translação</td></tr>
+          <tr><td>Localização (mapa)</td><td><span class="effect-name">zoomOut</span> — scale(1.04) opacity(0→1), 0.6s</td></tr>
+          <tr><td>Localização (card)</td><td><span class="effect-name">slideFromRight</span> leve — translateX(40px) opacity(0→1), delay 0.2s</td></tr>
+          <tr><td>FAQ (título)</td><td><span class="effect-name">slideFromLeft</span> leve — translateX(-30px) opacity(0→1). Items: sem efeito.</td></tr>
+          <tr><td>CTA Final (H2)</td><td><span class="effect-name">trackIn</span> — letter-spacing(0.15em→-0.02em) opacity(0→1), 0.7s</td></tr>
+          <tr><td>Botão CTA Final</td><td><span class="effect-name">pulse</span> infinita — box-shadow oscila, jamais para</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ELEMENTOS GLOBAIS
+  ============================================================ -->
+  <div class="block section-anchor" id="global">
+    <div class="block-header">
+      <div class="block-num block-num-blue">⊕</div>
+      <div class="block-title">Elementos Globais — Flutuantes e Fixos</div>
+    </div>
+    <div class="block-body">
+      <h3>Botão WhatsApp Flutuante (desktop only)</h3>
+      <p><code>position: fixed</code>, right 18px, bottom 18px, z-index 90. Círculo 60×60px, background <strong>#25D366</strong>, ícone SVG branco 32×32px. <code>animation: wapulse 2.6s infinite</code> com oscilação de box-shadow.</p>
+      <div class="code-block"><span class="c-blue">@keyframes</span> wapulse {
+  0%, 100% { box-shadow: 0 12px 30px -8px rgba(37,211,102,.6); }
+  50%       { box-shadow: 0 12px 38px -4px rgba(37,211,102,.9); }
+}</div>
+      <p>Ocultar em mobile: <code>@media (max-width: 640px) { .wa-float { display: none !important; } }</code></p>
+
+      <h3>Sticky CTA Mobile (mobile only)</h3>
+      <p><code>position: fixed</code>, bottom 0, left 0, right 0, z-index 95. Background <code>rgba(255,255,255,0.92)</code>, <code>backdrop-filter: blur(12px)</code>, border-top 1px solid #E8ECE8. Exibir apenas <code>@media (max-width: 640px)</code>. Adicionar <code>padding-bottom: 146px</code> ao body quando visível.</p>
+      <p>Grid de 2 colunas iguais:</p>
+      <div class="content-item"><strong>Botão esquerdo</strong> (verde #086948): "Ligar agora" · ícone telefone · href="tel:0413228131" · onclick="isbiTrack('cta_ligar_sticky')"</div>
+      <div class="content-item"><strong>Botão direito</strong> (#25D366): "WhatsApp" · ícone WhatsApp · href wa.me · onclick="isbiTrack('cta_whatsapp_sticky')" · class="sellbot-wpp-open"</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TÉCNICO
+  ============================================================ -->
+  <div class="block section-anchor" id="tecnico">
+    <div class="block-header">
+      <div class="block-num block-num-orange">&lt;/&gt;</div>
+      <div class="block-title">Detalhes Técnicos — Scripts e SEO</div>
+    </div>
+    <div class="block-body">
+      <h3>Google Tag Manager — No &lt;head&gt;</h3>
+      <div class="code-block"><span class="c-comment">&lt;!-- GTM --&gt;</span>
+<span class="c-blue">&lt;script&gt;</span>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','<span class="c-yellow">GTM-W7Q2SC29</span>');<span class="c-blue">&lt;/script&gt;</span>
+
+<span class="c-comment">&lt;!-- GTM noscript — início do &lt;body&gt; --&gt;</span>
+<span class="c-blue">&lt;noscript&gt;&lt;iframe</span> src=<span class="c-green">"https://www.googletagmanager.com/ns.html?id=GTM-W7Q2SC29"</span>
+  height=<span class="c-green">"0"</span> width=<span class="c-green">"0"</span> style=<span class="c-green">"display:none;visibility:hidden"</span><span class="c-blue">&gt;&lt;/iframe&gt;&lt;/noscript&gt;</span></div>
+
+      <h3>Tracking Function — Expor Globalmente</h3>
+      <div class="code-block">window.isbiTrack = function(eventName, extra) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(Object.assign({ event: eventName }, extra || {}));
+};</div>
+
+      <h3>Sellbot Plugin — Antes do &lt;/body&gt;</h3>
+      <div class="code-block"><span class="c-blue">&lt;script</span> src=<span class="c-green">"https://plugin.sellbot.tech/assets/js/sellbot_plugin.min.js"</span><span class="c-blue">&gt;&lt;/script&gt;</span>
+<span class="c-comment">// Todos os botões de WhatsApp devem ter class="sellbot-wpp-open"</span></div>
+
+      <h3>Schema.org — Dentista Local</h3>
+      <div class="code-block"><span class="c-blue">&lt;script</span> type=<span class="c-green">"application/ld+json"</span><span class="c-blue">&gt;</span>
+{
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "name": <span class="c-green">"ISBI Odonto - Instituto Sul-Brasileiro de Implantodontia"</span>,
+  "telephone": <span class="c-green">"0413228131"</span>,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": <span class="c-green">"R. Prof. Ulisses Vieira, 1315 - Santa Quitéria"</span>,
+    "addressLocality": <span class="c-green">"Curitiba"</span>,
+    "addressRegion": <span class="c-green">"PR"</span>,
+    "postalCode": <span class="c-green">"80310-120"</span>,
+    "addressCountry": <span class="c-green">"BR"</span>
+  },
+  "areaServed": <span class="c-green">"Curitiba"</span>,
+  "medicalSpecialty": <span class="c-green">"Dentistry"</span>
+}
+<span class="c-blue">&lt;/script&gt;</span></div>
+
+      <h3>Meta Tags SEO</h3>
+      <div class="code-block"><span class="c-blue">&lt;title&gt;</span>ISBI Odonto em Curitiba | Clínica Odontológica em Santa Quitéria<span class="c-blue">&lt;/title&gt;</span>
+<span class="c-blue">&lt;meta</span> name=<span class="c-green">"description"</span> content=<span class="c-green">"Conheça o ISBI Odonto, clínica odontológica em Curitiba com atendimento integrado, laboratório anexo, centro cirúrgico próprio e planejamento individualizado."</span><span class="c-blue">&gt;</span>
+<span class="c-blue">&lt;meta</span> name=<span class="c-green">"robots"</span> content=<span class="c-green">"index, follow"</span><span class="c-blue">&gt;</span>
+<span class="c-blue">&lt;link</span> rel=<span class="c-green">"canonical"</span> href=<span class="c-green">"https://www.isbiodonto.com.br/"</span><span class="c-blue">&gt;</span>
+<span class="c-blue">&lt;meta</span> name=<span class="c-green">"theme-color"</span> content=<span class="c-green">"#086948"</span><span class="c-blue">&gt;</span>
+<span class="c-blue">&lt;meta</span> property=<span class="c-green">"og:type"</span> content=<span class="c-green">"website"</span><span class="c-blue">&gt;</span>
+<span class="c-blue">&lt;meta</span> property=<span class="c-green">"og:title"</span> content=<span class="c-green">"ISBI Odonto em Curitiba | Clínica Odontológica em Santa Quitéria"</span><span class="c-blue">&gt;</span>
+<span class="c-blue">&lt;meta</span> property=<span class="c-green">"og:locale"</span> content=<span class="c-green">"pt_BR"</span><span class="c-blue">&gt;</span></div>
+
+      <h3>Responsividade — Breakpoints</h3>
+      <div class="content-item"><strong>Desktop</strong> ≥ 1001px — Layout completo conforme documentado</div>
+      <div class="content-item"><strong>Tablet</strong> 641–1000px — Grids → 2 colunas. Nav desktop oculta → hambúrguer. About: coluna única. Team: coluna única.</div>
+      <div class="content-item"><strong>Mobile</strong> ≤ 640px — Tudo em coluna única. Sticky CTA visível. Floating WA oculto. Hero padding-inline 24px. Hero sem eyebrow. H1 max 11ch. background-attachment scroll (sem fixed).</div>
+      <p style="margin-top:12px"><strong>Container:</strong> max-width 1200px · margin-inline auto · padding-inline <code>clamp(20px, 5vw, 64px)</code>. Seções: padding-block <code>clamp(64px, 9vw, 128px)</code>. Fontes mínimas: mobile 16px / desktop 17px.</p>
+
+      <div class="callout callout-warning">
+        <div class="callout-icon">⚠</div>
+        <p><strong>Imagens:</strong> todas estão em <code>assets/</code>. Não usar placeholders. Nomes exatos: <code>logo-isbi.png</code>, <code>logo-isbi-white.png</code>, <code>hero_institucional.webp</code>, <code>call_institucional.webp</code>, <code>sobre1.webp</code>, <code>sobre2.webp</code>, <code>centro-cirurgico.jpeg</code>, <code>luciano.webp</code>, <code>stephanie.webp</code>, <code>Copel.svg.png</code>, <code>logo-neodent.webp</code>, <code>google.webp</code>, <code>logo-isbi-white.png</code></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="promptText" style="display:none"></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    // Build the plain text content for copying
+    this.buildPromptText();
+
+    // Wire copy button
+    const btn = document.getElementById('copyAllBtn');
+    if (btn) {
+      btn.addEventListener('click', () => this.copyPrompt(btn));
+    }
+  }
+
+  buildPromptText() {
+    const blocks = document.querySelectorAll('.block');
+    let text = '=== PROMPT DE REDESIGN PREMIUM — ISBI ODONTO ===\n';
+    text += 'Site institucional one-page premium, inovador e exclusivo\n';
+    text += 'Gerado em: ' + new Date().toLocaleDateString('pt-BR') + '\n\n';
+
+    blocks.forEach(block => {
+      const titleEl = block.querySelector('.block-title');
+      const tagEl = block.querySelector('.block-tag');
+      const bodyEl = block.querySelector('.block-body');
+      if (!titleEl || !bodyEl) return;
+
+      const title = titleEl.textContent.trim();
+      const tag = tagEl ? tagEl.textContent.trim() : '';
+      text += '\n' + '─'.repeat(60) + '\n';
+      text += '## ' + title + (tag ? ' [' + tag + ']' : '') + '\n';
+      text += '─'.repeat(60) + '\n\n';
+
+      // Extract headings and paragraphs
+      const h3s = bodyEl.querySelectorAll('h3');
+      h3s.forEach(h3 => {
+        text += '### ' + h3.textContent.trim() + '\n\n';
+        let next = h3.nextElementSibling;
+        while (next && next.tagName !== 'H3') {
+          if (next.classList.contains('content-item')) {
+            text += '• ' + next.textContent.trim() + '\n';
+          } else if (next.tagName === 'P') {
+            text += next.textContent.trim() + '\n\n';
+          } else if (next.classList.contains('code-block')) {
+            text += '```\n' + next.textContent.trim() + '\n```\n\n';
+          } else if (next.classList.contains('color-grid')) {
+            const swatches = next.querySelectorAll('.color-swatch');
+            swatches.forEach(s => {
+              const hex = s.querySelector('.swatch-hex');
+              const name = s.querySelector('.swatch-name');
+              if (hex && name) text += '• ' + hex.textContent + ' — ' + name.textContent + '\n';
+            });
+            text += '\n';
+          } else if (next.classList.contains('effect-table')) {
+            const rows = next.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+              const cells = row.querySelectorAll('td');
+              if (cells.length >= 2) text += '• ' + cells[0].textContent.trim() + ': ' + cells[1].textContent.trim() + '\n';
+            });
+            text += '\n';
+          } else if (next.classList.contains('callout')) {
+            text += '⚡ ' + next.querySelector('p').textContent.trim() + '\n\n';
+          } else if (next.classList.contains('pills')) {
+            const pills = next.querySelectorAll('.pill');
+            pills.forEach(p => { text += '[' + p.textContent + '] '; });
+            text += '\n\n';
+          } else if (next.classList.contains('divider')) {
+            text += '\n';
+          }
+          next = next.nextElementSibling;
+        }
+        text += '\n';
+      });
+
+      // If no h3s, just get body text
+      if (!h3s.length) {
+        const items = bodyEl.querySelectorAll('.content-item, p');
+        items.forEach(item => {
+          text += item.classList.contains('content-item') ? '• ' : '';
+          text += item.textContent.trim() + '\n';
+        });
+        text += '\n';
+      }
+    });
+
+    text += '\n' + '═'.repeat(60) + '\n';
+    text += 'FIM DO PROMPT — ISBI Odonto Redesign Premium\n';
+    text += '═'.repeat(60) + '\n';
+
+    document.getElementById('promptText').textContent = text;
+  }
+
+  copyPrompt(btn) {
+    const text = document.getElementById('promptText').textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        this.showCopied(btn);
+      }).catch(() => this.fallbackCopy(text, btn));
+    } else {
+      this.fallbackCopy(text, btn);
+    }
+  }
+
+  fallbackCopy(text, btn) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); this.showCopied(btn); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+
+  showCopied(btn) {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg> Copiado!';
+    btn.style.background = '#2ea043';
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.style.background = '';
+    }, 2500);
+  }
+}
+
+</script>
+</body>
+</html>
