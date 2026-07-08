@@ -256,6 +256,14 @@ color:#fff;overflow:hidden}
 .tc--note .t-ico{margin-bottom:18px;background:rgba(255,255,255,.88);box-shadow:0 12px 28px -18px rgba(8,90,60,.26)}
 .t-ico svg{width:24px;height:24px}
 .t-ico img{width:24px;height:24px;object-fit:contain;display:block}
+.before-after-sec{background:linear-gradient(180deg,#ffffff 0%,#f6faf7 100%)}
+.before-after-head .ttl{max-width:16ch;margin-inline:auto}
+.before-after-head .lead{max-width:58ch;margin-inline:auto}
+.before-after-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:48px}
+.before-after-card{position:relative;overflow:hidden;border-radius:26px;background:#fff;border:1px solid rgba(8,105,72,.08);box-shadow:0 18px 38px -28px rgba(15,40,30,.26);aspect-ratio:1/1;isolation:isolate}
+.before-after-card::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;background:linear-gradient(180deg,rgba(6,41,29,0) 0%,rgba(6,41,29,.18) 100%);pointer-events:none;z-index:1}
+.before-after-card img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.before-after-card:hover img{transform:scale(1.04)}
 /* Reviews */
 .rev-vp{overflow:hidden;margin-top:0}
 .rev-track{--c:3;--g:18px;display:flex;gap:var(--g);transition:transform .6s cubic-bezier(.22,.8,.3,1)}
@@ -380,6 +388,7 @@ pointer-events:none
 .about-card{order:1}
 .team-grid{grid-template-columns:1fr}
 .treat-grid{grid-template-columns:repeat(2,1fr)}
+.before-after-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .loc-grid{grid-template-columns:1fr}
 .faq-wrap{grid-template-columns:1fr}
 .ft-grid{grid-template-columns:1fr 1fr}
@@ -396,6 +405,7 @@ body{font-size:16px}
 .sticky-cta{display:block}
 body{padding-bottom:76px}
 .pain-grid,.tl,.treat-grid{grid-template-columns:1fr}
+.before-after-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .care-shell{padding:0}
 .pain-card{min-height:auto;align-items:center;text-align:center}
 .pain-ico{margin-inline:auto}
@@ -405,9 +415,11 @@ body{padding-bottom:76px}
 .tl-step{text-align:center}
 .tl-num{margin-inline:auto}
 .treat-head .ttl,.treat-head .lead{max-width:none}
+.before-after-head .ttl,.before-after-head .lead{max-width:none}
 .tc{padding:24px 20px;border-radius:22px;text-align:center}
 .t-ico{margin-inline:auto}
 .tc--note .t-ico{margin-bottom:14px}
+.before-after-card{border-radius:22px}
 .str-rows{gap:18px;margin-top:40px}
 .fc{padding:24px 20px;border-radius:24px;text-align:center}
 .fc--ft{padding:28px 22px}
@@ -608,7 +620,31 @@ body{padding-bottom:76px}
   </div>
 </section>
 
-<!-- ===== 04 DEPOIMENTOS ===== -->
+<!-- ===== 04 ANTES E DEPOIS ===== -->
+<section class="sec before-after-sec" id="antes-depois" data-screen-label="Antes e Depois">
+  <div class="wrap">
+    <div class="sh sh--c rv-up before-after-head">
+      <h2 class="ttl">Sorrisos transformados</h2>
+      <p class="lead">Cada caso passa por avaliação individual e os resultados variam conforme as necessidades de cada paciente.</p>
+    </div>
+    <div class="before-after-grid">
+      <figure class="before-after-card rv-zoom" style="--d:.02s"><img src="uploads/a1.webp" alt="Antes e depois de tratamento odontológico 1" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.04s"><img src="uploads/a2.webp" alt="Antes e depois de tratamento odontológico 2" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.06s"><img src="uploads/a3.webp" alt="Antes e depois de tratamento odontológico 3" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.08s"><img src="uploads/a4.webp" alt="Antes e depois de tratamento odontológico 4" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.10s"><img src="uploads/a5.webp" alt="Antes e depois de tratamento odontológico 5" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.12s"><img src="uploads/a6.webp" alt="Antes e depois de tratamento odontológico 6" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.14s"><img src="uploads/a7.webp" alt="Antes e depois de tratamento odontológico 7" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.16s"><img src="uploads/a8.webp" alt="Antes e depois de tratamento odontológico 8" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.18s"><img src="uploads/a9.webp" alt="Antes e depois de tratamento odontológico 9" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.20s"><img src="uploads/a10.webp" alt="Antes e depois de tratamento odontológico 10" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.22s"><img src="uploads/a11.webp" alt="Antes e depois de tratamento odontológico 11" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.24s"><img src="uploads/a12.webp" alt="Antes e depois de tratamento odontológico 12" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 DEPOIMENTOS ===== -->
 <section class="sec rev-sec" id="depoimentos" data-screen-label="Depoimentos">
   <div class="wrap">
     <div class="sh sh--c rv-up">
