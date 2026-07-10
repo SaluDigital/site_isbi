@@ -946,16 +946,7 @@ image-slot{ --is-bg:var(--green-wash); background:var(--green-wash); }
   width:100%;
   min-height:58px;
 }
-/* ---------- Floating WhatsApp + sticky mobile CTA ---------- */
-.wa-float{
-  position:fixed; right:18px; bottom:18px; z-index:90;
-  width:60px; height:60px; border-radius:50%; background:#25D366; display:flex;
-  align-items:center; justify-content:center; box-shadow:0 12px 30px -8px rgba(37,211,102,.7);
-  animation:wapulse 2.6s infinite;
-}
-.wa-float svg{ width:32px; height:32px; color:#fff; }
-@keyframes wapulse{ 0%,100%{ box-shadow:0 12px 30px -8px rgba(37,211,102,.6);} 50%{ box-shadow:0 12px 38px -4px rgba(37,211,102,.9);} }
-
+/* ---------- Sticky mobile CTA ---------- */
 .sticky-cta{
   position:fixed; left:0; right:0; bottom:0; z-index:95; display:none;
   padding:11px 14px calc(11px + env(safe-area-inset-bottom));
@@ -964,7 +955,7 @@ image-slot{ --is-bg:var(--green-wash); background:var(--green-wash); }
 }
 .sticky-cta__grid{
   display:grid;
-  grid-template-columns:repeat(2, minmax(0, 1fr));
+  grid-template-columns:1fr;
   gap:10px;
 }
 .sticky-cta .btn{
@@ -1018,21 +1009,10 @@ image-slot{ --is-bg:var(--green-wash); background:var(--green-wash); }
 }
 @media (max-width:640px){
   body{ font-size:16px; }
-  .wa-float{ display:none !important; }
   .sticky-cta{ display:block; }
-  .sticky-cta .btn,
-  .sticky-cta .btn--wa,
-  .sticky-cta a.btn[href*="wa.me"],
-  .sticky-cta a.btn[href*="wa.me"]:visited{
-    --bg:#25D366;
-    --fg:#fff;
-    background:#25D366;
-    color:#fff;
-    border-color:#25D366;
-  }
-  body.has-sticky{ padding-bottom:146px; }
+  body.has-sticky{ padding-bottom:96px; }
   .sticky-cta__grid{
-    grid-template-columns:repeat(2, minmax(0, 1fr));
+    grid-template-columns:1fr;
     gap:12px;
   }
   .sticky-cta .btn{

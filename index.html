@@ -8,6 +8,15 @@
 <body>
 <x-dc>
 <helmet>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9NJHJTB0EL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9NJHJTB0EL');
+</script>
 <title>ISBI Odonto em Curitiba | Clínica Odontológica em Santa Quitéria</title>
 <meta name="description" content="Conheça o ISBI Odonto, clínica odontológica em Curitiba com atendimento integrado, laboratório anexo, centro cirúrgico próprio e planejamento individualizado.">
 <meta name="robots" content="index, follow">
@@ -342,15 +351,9 @@ pointer-events:none
 .ft-col li{display:flex;align-items:flex-start;gap:8px}
 .ft-col li svg{width:15px;height:15px;flex:none;margin-top:3px;color:var(--gs)}
 .ft-bot{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:.8rem;color:rgba(255,255,255,.55);text-align:center}
-/* Floating WA */
-.wa-float{position:fixed;right:18px;bottom:18px;z-index:90;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.7);transition:transform .2s}
-.wa-float:hover{transform:scale(1.1)}
-.wa-float svg{width:32px;height:32px;color:#fff}
-@keyframes wap{0%,100%{box-shadow:0 12px 30px -8px rgba(37,211,102,.6)}50%{box-shadow:0 14px 40px -4px rgba(37,211,102,.9)}}
-.wa-float{animation:wap 2.6s infinite}
 /* Sticky CTA */
 .sticky-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:95;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-top:1px solid var(--grey)}
-.sticky-cta-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sticky-cta-g{display:grid;grid-template-columns:1fr;gap:10px}
 .sticky-cta .btn{width:100%;min-height:52px;padding-inline:12px;font-size:.9rem}
 /* Scroll reveals */
 @media(prefers-reduced-motion:no-preference){
@@ -401,7 +404,6 @@ pointer-events:none
 }
 @media(max-width:640px){
 body{font-size:16px}
-.wa-float{display:none!important}
 .sticky-cta{display:block}
 body{padding-bottom:76px}
 .pain-grid,.tl,.treat-grid{grid-template-columns:1fr}
@@ -982,19 +984,11 @@ body{padding-bottom:76px}
 
 </main>
 
-<!-- Floating WhatsApp -->
-<a class="wa-float sellbot-wpp-open" href="https://wa.me/554132281313?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="WhatsApp" onclick="isbiTrack&&isbiTrack('cta_whatsapp_float')">
-  <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>
-</a>
-
 <!-- Sticky mobile CTA -->
 <div class="sticky-cta">
   <div class="sticky-cta-g">
     <a class="btn btn--call" href="tel:0413228131" onclick="isbiTrack&&isbiTrack('cta_ligar_sticky')">
       <svg viewBox="0 0 24 24"><use href="#i-phone"/></svg>Ligar agora
-    </a>
-    <a class="btn btn--wa sellbot-wpp-open" href="https://wa.me/554132281313?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" onclick="isbiTrack&&isbiTrack('cta_whatsapp_sticky')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>WhatsApp
     </a>
   </div>
 </div>
