@@ -256,7 +256,7 @@
           + (nome ? " Meu nome é " + nome + "." : "")
           + (tel ? " Telefone: " + tel + "." : "")
           + " Interesse: " + trat + ".";
-        var url = "https://wa.me/554132281313?text=" + encodeURIComponent(msg);
+        var url = "https://wa.me/554184227987?text=" + encodeURIComponent(msg);
         window.open(url, "_blank", "noopener");
       });
     }
