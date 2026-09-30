@@ -1,4 +1,4 @@
-Ôªø<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -17,8 +17,8 @@
 
   gtag('config', 'G-9NJHJTB0EL');
 </script>
-<title>ISBI Odonto em Curitiba | Cl√≠nica Odontol√≥gica em Santa Quit√©ria</title>
-<meta name="description" content="Conhe√ßa o ISBI Odonto, cl√≠nica odontol√≥gica em Curitiba com atendimento integrado, laborat√≥rio anexo, centro cir√∫rgico pr√≥prio e planejamento individualizado.">
+<title>ISBI Odonto em Curitiba | ClÌnica OdontolÛgica em Santa QuitÈria</title>
+<meta name="description" content="ConheÁa o ISBI Odonto, clÌnica odontolÛgica em Curitiba com atendimento integrado, laboratÛrio anexo, centro cir˙rgico prÛprio e planejamento individualizado.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.isbiodonto.com.br/">
 <link rel="icon" type="image/png" href="uploads/favicon.png">
@@ -269,10 +269,17 @@ color:#fff;overflow:hidden}
 .before-after-head .ttl{max-width:16ch;margin-inline:auto}
 .before-after-head .lead{max-width:58ch;margin-inline:auto}
 .before-after-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:48px}
-.before-after-card{position:relative;overflow:hidden;border-radius:26px;background:#fff;border:1px solid rgba(8,105,72,.08);box-shadow:0 18px 38px -28px rgba(15,40,30,.26);aspect-ratio:1/1;isolation:isolate}
-.before-after-card::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;background:linear-gradient(180deg,rgba(6,41,29,0) 0%,rgba(6,41,29,.18) 100%);pointer-events:none;z-index:1}
-.before-after-card img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
-.before-after-card:hover img{transform:scale(1.04)}
+.before-after-card{--pos:50%;position:relative;overflow:hidden;border-radius:26px;background:#fff;border:1px solid rgba(8,105,72,.08);box-shadow:0 18px 38px -28px rgba(15,40,30,.26);aspect-ratio:1/1;isolation:isolate}
+.ba-stage{position:absolute;inset:0;overflow:hidden;border-radius:inherit;background:#edf3ef;touch-action:none}
+.ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none}
+.ba-img--after{clip-path:inset(0 0 0 var(--pos))}
+.ba-divider{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:rgba(255,255,255,.94);box-shadow:0 0 0 1px rgba(8,105,72,.08),0 0 22px rgba(0,0,0,.2);transform:translateX(-50%);z-index:3;pointer-events:none}
+.ba-handle{position:absolute;top:50%;left:50%;width:48px;height:48px;border-radius:999px;display:grid;place-items:center;background:#fff;color:var(--green);box-shadow:0 16px 34px -16px rgba(0,0,0,.44);transform:translate(-50%,-50%)}
+.ba-handle::before,.ba-handle::after{content:"";position:absolute;width:9px;height:9px;border-top:2px solid currentColor;border-left:2px solid currentColor}
+.ba-handle::before{transform:rotate(-45deg);left:15px}
+.ba-handle::after{transform:rotate(135deg);right:15px}
+.ba-range{position:absolute;inset:0;z-index:4;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:ew-resize}
+.ba-range:focus-visible + .ba-focus{position:absolute;inset:6px;border:2px solid #fff;border-radius:22px;box-shadow:0 0 0 3px rgba(8,105,72,.45);z-index:5;pointer-events:none}
 /* Reviews */
 .rev-vp{overflow:hidden;margin-top:0}
 .rev-track{--c:3;--g:18px;display:flex;gap:var(--g);transition:transform .6s cubic-bezier(.22,.8,.3,1)}
@@ -498,17 +505,17 @@ body{padding-bottom:76px}
 <!-- ===== HEADER ===== -->
 <header class="hdr" id="hdr">
   <div class="wrap hdr__in">
-    <a class="hdr__logo" href="#topo" aria-label="ISBI Odonto ‚Äî in√≠cio">
+    <a class="hdr__logo" href="#topo" aria-label="ISBI Odonto ó inÌcio">
       <img src="uploads/logo-isbi.png" alt="ISBI Odonto">
     </a>
-    <nav class="hdr__nav" aria-label="Navega√ß√£o principal">
-      <a href="#topo">In√≠cio</a>
+    <nav class="hdr__nav" aria-label="NavegaÁ„o principal">
+      <a href="#topo">InÌcio</a>
       <a href="#sobre">Sobre</a>
       <a href="#diferenciais">Estrutura</a>
       <a href="#profissionais">Profissionais</a>
       <a href="#tratamentos">Tratamentos</a>
       <a href="https://blog.isbiodonto.odo.br" target="_blank" rel="noopener">Blog</a>
-      <a href="#localizacao">Localiza√ß√£o</a>
+      <a href="#localizacao">LocalizaÁ„o</a>
     </nav>
     <div class="hdr__cta">
       <a class="btn btn--wa sellbot-wpp-open" href="https://wa.me/554184227987?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">
@@ -531,14 +538,14 @@ body{padding-bottom:76px}
       </button>
     </div>
     <nav aria-label="Menu mobile">
-      <a href="#topo">In√≠cio</a>
+      <a href="#topo">InÌcio</a>
       <a href="#sobre">Sobre</a>
       <a href="#diferenciais">Estrutura</a>
       <a href="#profissionais">Profissionais</a>
       <a href="#tratamentos">Tratamentos</a>
       <a href="https://blog.isbiodonto.odo.br" target="_blank" rel="noopener">Blog</a>
-      <a href="#localizacao">Localiza√ß√£o</a>
-      <a href="#duvidas">D√∫vidas</a>
+      <a href="#localizacao">LocalizaÁ„o</a>
+      <a href="#duvidas">D˙vidas</a>
     </nav>
     <div class="dw-cta">
       <a class="btn btn--wa sellbot-wpp-open" href="https://wa.me/554184227987?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" style="width:100%">
@@ -555,43 +562,43 @@ body{padding-bottom:76px}
   <div class="wrap hero__grid">
     <h1>
       <span>Seu sorriso</span>
-      <span>em boas m√£os,</span>
+      <span>em boas m„os,</span>
       <em>com cuidado</em>
       <em>de verdade</em>
     </h1>
-    <p class="hero__sub">No ISBI Odonto, voc√™ encontra atendimento atento, planejamento cuidadoso e uma estrutura completa para acompanhar cada etapa do seu tratamento.</p>
+    <p class="hero__sub">No ISBI Odonto, vocÍ encontra atendimento atento, planejamento cuidadoso e uma estrutura completa para acompanhar cada etapa do seu tratamento.</p>
     <div class="hero__cta">
       <a class="btn btn--wa btn--lg sellbot-wpp-open" href="https://wa.me/554184227987?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" onclick="isbiTrack&&isbiTrack('cta_whatsapp_hero')">
-        <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>Gostaria de mais informa√ß√µes
+        <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>Gostaria de mais informaÁıes
       </a>
     </div>
   </div>
 </section>
 
-<!-- ===== 02 N√öMEROS ===== -->
-<section class="num-sec" data-screen-label="N√∫meros" id="numeros">
+<!-- ===== 02 N⁄MEROS ===== -->
+<section class="num-sec" data-screen-label="N˙meros" id="numeros">
   <div class="wrap">
     <div class="num-shell">
       <div class="num-grid">
         <div class="num-item num-item--exp rv-up" style="--d:.08s">
           <span class="num-val" data-count="23" data-suffix="+">23</span>
-          <span class="num-lbl">Anos de experi√™ncia cl√≠nica</span>
-          <p class="num-note">Uma trajet√≥ria constru√≠da com planejamento cuidadoso, acompanhamento pr√≥ximo e foco em reabilita√ß√£o oral.</p>
+          <span class="num-lbl">Anos de experiÍncia clÌnica</span>
+          <p class="num-note">Uma trajetÛria construÌda com planejamento cuidadoso, acompanhamento prÛximo e foco em reabilitaÁ„o oral.</p>
         </div>
         <div class="num-item num-item--doctor rv-up" style="--d:.16s">
           <span class="num-val" data-count="28" data-suffix="+">28</span>
-          <span class="num-lbl">Anos de experi√™ncia do Dr. Luciano</span>
-          <p class="num-note">Atua√ß√£o dedicada ao planejamento e √† execu√ß√£o de tratamentos com implantes dent√°rios e reabilita√ß√£o oral.</p>
+          <span class="num-lbl">Anos de experiÍncia do Dr. Luciano</span>
+          <p class="num-note">AtuaÁ„o dedicada ao planejamento e ‡ execuÁ„o de tratamentos com implantes dent·rios e reabilitaÁ„o oral.</p>
         </div>
         <div class="num-item num-item--team rv-up" style="--d:.24s">
           <span class="num-val" data-count="2">2</span>
-          <span class="num-lbl">Especialistas em reabilita√ß√£o oral</span>
-          <p class="num-note">Profissionais envolvidos no cuidado funcional, est√©tico e individualizado de cada caso.</p>
+          <span class="num-lbl">Especialistas em reabilitaÁ„o oral</span>
+          <p class="num-note">Profissionais envolvidos no cuidado funcional, estÈtico e individualizado de cada caso.</p>
         </div>
         <div class="num-item num-item--structure rv-up" style="--d:.32s">
           <span class="num-val" data-count="1">1</span>
-          <span class="num-lbl">Estrutura completa com laborat√≥rio e centro cir√∫rgico</span>
-          <p class="num-note">Mais integra√ß√£o entre diagn√≥stico, etapas cl√≠nicas e procedimentos realizados na pr√≥pria cl√≠nica.</p>
+          <span class="num-lbl">Estrutura completa com laboratÛrio e centro cir˙rgico</span>
+          <p class="num-note">Mais integraÁ„o entre diagnÛstico, etapas clÌnicas e procedimentos realizados na prÛpria clÌnica.</p>
         </div>
       </div>
     </div>
@@ -602,19 +609,19 @@ body{padding-bottom:76px}
 <section class="sec sec--ow treat-sec" id="tratamentos" data-screen-label="Tratamentos">
   <div class="wrap">
     <div class="sh sh--c rv-up treat-head">
-      <h2 class="ttl">Tratamentos que podem fazer parte do seu planejamento odontol√≥gico</h2>
-      <p class="lead">O ISBI Odonto re√∫ne diferentes √°reas da odontologia para oferecer um cuidado mais completo, sempre a partir de uma avalia√ß√£o individualizada.</p>
+      <h2 class="ttl">Tratamentos que podem fazer parte do seu planejamento odontolÛgico</h2>
+      <p class="lead">O ISBI Odonto re˙ne diferentes ·reas da odontologia para oferecer um cuidado mais completo, sempre a partir de uma avaliaÁ„o individualizada.</p>
     </div>
     <div class="treat-grid" id="treatGrid">
-      <article class="tc"><div class="t-ico"><img src="uploads/006-implants-1.svg" alt="" loading="lazy"></div><h3>Implantes dent√°rios</h3><p>Indicados para substituir um ou mais dentes perdidos, conforme avalia√ß√£o cl√≠nica e planejamento profissional.</p></article>
-      <article class="tc"><div class="t-ico"><img src="uploads/032-tooth-1.svg" alt="" loading="lazy"></div><h3>Pr√≥teses dent√°rias</h3><p>Solu√ß√µes para recuperar fun√ß√£o mastigat√≥ria, est√©tica e conforto em diferentes necessidades de reabilita√ß√£o oral.</p></article>
-      <article class="tc"><div class="t-ico"><img src="uploads/009-implants.svg" alt="" loading="lazy"></div><h3>Pr√≥tese sobre implante</h3><p>Alternativa para reabilita√ß√£o com mais estabilidade em rela√ß√£o a pr√≥teses remov√≠veis, quando indicada para o caso.</p></article>
-      <article class="tc"><div class="t-ico"><img src="uploads/015-denture-2.svg" alt="" loading="lazy"></div><h3>Pr√≥tese protocolo</h3><p>Solu√ß√£o fixa sobre implantes para casos selecionados, de acordo com avalia√ß√£o profissional.</p></article>
-      <article class="tc"><div class="t-ico"><img src="uploads/010-smile.svg" alt="" loading="lazy"></div><h3>Reabilita√ß√£o oral</h3><p>Planejamento integrado para recuperar fun√ß√£o, est√©tica e equil√≠brio do sorriso em casos mais completos.</p></article>
-      <article class="tc"><div class="t-ico"><img src="uploads/005-broken-tooth.svg" alt="" loading="lazy"></div><h3>Odontologia est√©tica e restauradora</h3><p>Tratamentos voltados √† harmonia do sorriso, restaura√ß√£o de dentes e melhora est√©tica, sempre com indica√ß√£o individual.</p></article>
-      <article class="tc"><div class="t-ico"><img src="uploads/008-white-teeth.svg" alt="" loading="lazy"></div><h3>Clareamento dental</h3><p>Procedimento est√©tico indicado para melhorar a tonalidade dos dentes, quando adequado para o paciente.</p></article>
-      <article class="tc"><div class="t-ico"><img src="uploads/004-dentist.svg" alt="" loading="lazy"></div><h3>Preven√ß√£o e manuten√ß√£o</h3><p>Cuidados peri√≥dicos para acompanhar a sa√∫de bucal, prevenir problemas e manter os resultados dos tratamentos.</p></article>
-      <article class="tc tc--note"><div class="t-ico"><img src="uploads/015-doctor-3.svg" alt="" loading="lazy"></div><div><h3>Indica√ß√£o individual</h3><p>A indica√ß√£o de qualquer tratamento depende da avalia√ß√£o profissional, exames necess√°rios e planejamento personalizado para cada paciente.</p></div></article>
+      <article class="tc"><div class="t-ico"><img src="uploads/006-implants-1.svg" alt="" loading="lazy"></div><h3>Implantes dent·rios</h3><p>Indicados para substituir um ou mais dentes perdidos, conforme avaliaÁ„o clÌnica e planejamento profissional.</p></article>
+      <article class="tc"><div class="t-ico"><img src="uploads/032-tooth-1.svg" alt="" loading="lazy"></div><h3>PrÛteses dent·rias</h3><p>SoluÁıes para recuperar funÁ„o mastigatÛria, estÈtica e conforto em diferentes necessidades de reabilitaÁ„o oral.</p></article>
+      <article class="tc"><div class="t-ico"><img src="uploads/009-implants.svg" alt="" loading="lazy"></div><h3>PrÛtese sobre implante</h3><p>Alternativa para reabilitaÁ„o com mais estabilidade em relaÁ„o a prÛteses removÌveis, quando indicada para o caso.</p></article>
+      <article class="tc"><div class="t-ico"><img src="uploads/015-denture-2.svg" alt="" loading="lazy"></div><h3>PrÛtese protocolo</h3><p>SoluÁ„o fixa sobre implantes para casos selecionados, de acordo com avaliaÁ„o profissional.</p></article>
+      <article class="tc"><div class="t-ico"><img src="uploads/010-smile.svg" alt="" loading="lazy"></div><h3>ReabilitaÁ„o oral</h3><p>Planejamento integrado para recuperar funÁ„o, estÈtica e equilÌbrio do sorriso em casos mais completos.</p></article>
+      <article class="tc"><div class="t-ico"><img src="uploads/005-broken-tooth.svg" alt="" loading="lazy"></div><h3>Odontologia estÈtica e restauradora</h3><p>Tratamentos voltados ‡ harmonia do sorriso, restauraÁ„o de dentes e melhora estÈtica, sempre com indicaÁ„o individual.</p></article>
+      <article class="tc"><div class="t-ico"><img src="uploads/008-white-teeth.svg" alt="" loading="lazy"></div><h3>Clareamento dental</h3><p>Procedimento estÈtico indicado para melhorar a tonalidade dos dentes, quando adequado para o paciente.</p></article>
+      <article class="tc"><div class="t-ico"><img src="uploads/004-dentist.svg" alt="" loading="lazy"></div><h3>PrevenÁ„o e manutenÁ„o</h3><p>Cuidados periÛdicos para acompanhar a sa˙de bucal, prevenir problemas e manter os resultados dos tratamentos.</p></article>
+      <article class="tc tc--note"><div class="t-ico"><img src="uploads/015-doctor-3.svg" alt="" loading="lazy"></div><div><h3>IndicaÁ„o individual</h3><p>A indicaÁ„o de qualquer tratamento depende da avaliaÁ„o profissional, exames necess·rios e planejamento personalizado para cada paciente.</p></div></article>
     </div>
     <div class="care-foot rv-up" style="--d:.18s">
       <a class="btn btn--wa sellbot-wpp-open" href="https://wa.me/554184227987?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" onclick="isbiTrack&&isbiTrack('cta_whatsapp_tratamentos')">
@@ -629,21 +636,105 @@ body{padding-bottom:76px}
   <div class="wrap">
     <div class="sh sh--c rv-up before-after-head">
       <h2 class="ttl">Sorrisos transformados</h2>
-      <p class="lead">Cada caso passa por avalia√ß√£o individual e os resultados variam conforme as necessidades de cada paciente.</p>
+      <p class="lead">Cada caso passa por avaliaÁ„o individual e os resultados variam conforme as necessidades de cada paciente.</p>
     </div>
     <div class="before-after-grid">
-      <figure class="before-after-card rv-zoom" style="--d:.02s"><img src="uploads/a1.webp" alt="Antes e depois de tratamento odontol√≥gico 1" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.04s"><img src="uploads/a2.webp" alt="Antes e depois de tratamento odontol√≥gico 2" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.06s"><img src="uploads/a3.webp" alt="Antes e depois de tratamento odontol√≥gico 3" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.08s"><img src="uploads/a4.webp" alt="Antes e depois de tratamento odontol√≥gico 4" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.10s"><img src="uploads/a5.webp" alt="Antes e depois de tratamento odontol√≥gico 5" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.12s"><img src="uploads/a6.webp" alt="Antes e depois de tratamento odontol√≥gico 6" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.14s"><img src="uploads/a7.webp" alt="Antes e depois de tratamento odontol√≥gico 7" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.16s"><img src="uploads/a8.webp" alt="Antes e depois de tratamento odontol√≥gico 8" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.18s"><img src="uploads/a9.webp" alt="Antes e depois de tratamento odontol√≥gico 9" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.20s"><img src="uploads/a10.webp" alt="Antes e depois de tratamento odontol√≥gico 10" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.22s"><img src="uploads/a11.webp" alt="Antes e depois de tratamento odontol√≥gico 11" loading="lazy"></figure>
-      <figure class="before-after-card rv-zoom" style="--d:.24s"><img src="uploads/a12.webp" alt="Antes e depois de tratamento odontol√≥gico 12" loading="lazy"></figure>
+      <figure class="before-after-card rv-zoom" style="--d:.02s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/a_1.webp" alt="Antes do tratamento odontolÛgico 1" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/a_2.webp" alt="Depois do tratamento odontolÛgico 1" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 1"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.04s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/b_1.webp" alt="Antes do tratamento odontolÛgico 2" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/b_2.webp" alt="Depois do tratamento odontolÛgico 2" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 2"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.06s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/c_1.webp" alt="Antes do tratamento odontolÛgico 3" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/c_2.webp" alt="Depois do tratamento odontolÛgico 3" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 3"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.08s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/d_1.webp" alt="Antes do tratamento odontolÛgico 4" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/d_2.webp" alt="Depois do tratamento odontolÛgico 4" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 4"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.10s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/e_1.webp" alt="Antes do tratamento odontolÛgico 5" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/e_2.webp" alt="Depois do tratamento odontolÛgico 5" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 5"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.12s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/f_1.webp" alt="Antes do tratamento odontolÛgico 6" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/f_2.webp" alt="Depois do tratamento odontolÛgico 6" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 6"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.14s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/g_1.webp" alt="Antes do tratamento odontolÛgico 7" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/g_2.webp" alt="Depois do tratamento odontolÛgico 7" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 7"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.16s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/h_1.webp" alt="Antes do tratamento odontolÛgico 8" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/h_2.webp" alt="Depois do tratamento odontolÛgico 8" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 8"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.18s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/i_1.webp" alt="Antes do tratamento odontolÛgico 9" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/i_2.webp" alt="Depois do tratamento odontolÛgico 9" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 9"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.20s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/j_1.webp" alt="Antes do tratamento odontolÛgico 10" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/j_2.webp" alt="Depois do tratamento odontolÛgico 10" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 10"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.22s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/k_1.webp" alt="Antes do tratamento odontolÛgico 11" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/k_2.webp" alt="Depois do tratamento odontolÛgico 11" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 11"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
+      <figure class="before-after-card rv-zoom" style="--d:.24s">
+        <div class="ba-stage">
+          <img class="ba-img ba-img--before" src="uploads/l_1.webp" alt="Antes do tratamento odontolÛgico 12" loading="lazy">
+          <img class="ba-img ba-img--after" src="uploads/l_2.webp" alt="Depois do tratamento odontolÛgico 12" loading="lazy">
+          <span class="ba-divider" aria-hidden="true"><span class="ba-handle"></span></span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois do caso 12"><span class="ba-focus" aria-hidden="true"></span>
+        </div>
+      </figure>
     </div>
   </div>
 </section>
@@ -654,22 +745,22 @@ body{padding-bottom:76px}
     <div class="sh sh--c rv-up">
       <img class="g-badge" src="https://lp.isbiodonto.com.br/assets/google.webp" alt="Google" loading="lazy" width="150">
       <h2 class="ttl">Pacientes que confiam no ISBI Odonto</h2>
-      <p class="lead">Depoimentos de pacientes atendidos na cl√≠nica. As avalia√ß√µes podem ser conferidas diretamente no Google.</p>
+      <p class="lead">Depoimentos de pacientes atendidos na clÌnica. As avaliaÁıes podem ser conferidas diretamente no Google.</p>
     </div>
     <div style="margin-top:48px" class="rv-unblur" id="revCarWrap">
       <div class="rev-vp"><div class="rev-track" id="revTrack">
-        <article class="rev-card"><div class="stars"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div><p class="rev-q">√ìtimo atendimento, excelente trabalho os doutores muito queridos, profissionais eficientes.</p><div class="rev-who"><b>Nicolly Senke Ribeiro</b></div></article>
+        <article class="rev-card"><div class="stars"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div><p class="rev-q">”timo atendimento, excelente trabalho os doutores muito queridos, profissionais eficientes.</p><div class="rev-who"><b>Nicolly Senke Ribeiro</b></div></article>
         <article class="rev-card"><div class="stars"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div><p class="rev-q">Atendimento da Dra. Camila foi excelente. Fiz profilaxia e ainda vou fazer clareamento! As expectativas foram superadas!</p><div class="rev-who"><b>Angela Gomes da Rocha</b></div></article>
         <article class="rev-card"><div class="stars"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div><p class="rev-q">Excelente. Equipe profissional, atenciosos e educados. Fiquei muito satisfeita com o trabalho do dr. Luciano. Muito obrigada.</p><div class="rev-who"><b>Janete Garcia</b></div></article>
-        <article class="rev-card"><div class="stars"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div><p class="rev-q">Excelente atendimento por todos, muito satisfeita com o resultado do tratamento. Obrigada Dr. Luciano Zanetti, profissional seguro do que faz, que transmite tranquilidade e confian√ßa ao paciente. Cl√≠nica bem localizada e tranquilidade para estacionar.</p><div class="rev-who"><b>Cleonice Paes de Freiria</b></div></article>
-        <article class="rev-card"><div class="stars"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div><p class="rev-q">Me desloco de Florian√≥polis para tratamento nesta cl√≠nica devido sua excel√™ncia.</p><div class="rev-who"><b>Telmo Koerich</b></div></article>
+        <article class="rev-card"><div class="stars"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div><p class="rev-q">Excelente atendimento por todos, muito satisfeita com o resultado do tratamento. Obrigada Dr. Luciano Zanetti, profissional seguro do que faz, que transmite tranquilidade e confianÁa ao paciente. ClÌnica bem localizada e tranquilidade para estacionar.</p><div class="rev-who"><b>Cleonice Paes de Freiria</b></div></article>
+        <article class="rev-card"><div class="stars"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div><p class="rev-q">Me desloco de FlorianÛpolis para tratamento nesta clÌnica devido sua excelÍncia.</p><div class="rev-who"><b>Telmo Koerich</b></div></article>
         <article class="rev-card"><div class="stars"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div><p class="rev-q">Excelente atendimento, muito atenciosos, muito satisfeito com os resultados do meu tratamento.</p><div class="rev-who"><b>Assir Soares</b></div></article>
       </div></div>
       <div class="rev-dots" id="revDots"></div>
     </div>
     <div style="text-align:center" class="rv-up">
       <a class="btn btn--ghost" href="https://www.google.com/maps/search/ISBI+Odonto+Curitiba" target="_blank" rel="noopener" onclick="isbiTrack&&isbiTrack('cta_maps')">
-        <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>Ver avalia√ß√µes no Google
+        <svg viewBox="0 0 24 24"><use href="#i-star"/></svg>Ver avaliaÁıes no Google
       </a>
     </div>
   </div>
@@ -679,11 +770,11 @@ body{padding-bottom:76px}
 <section class="sec fcta" id="contato" data-screen-label="Agendar">
   <div class="wrap">
     <div class="rv-up">
-      <h2 id="ctaH2" style="margin-top:4px">Cuide da sua sa√∫de bucal com planejamento e acolhimento</h2>
-      <p class="lead">Converse com a equipe do ISBI Odonto para receber mais informa√ß√µes, agendar uma avalia√ß√£o e entender quais tratamentos podem ser indicados para o seu caso.</p>
+      <h2 id="ctaH2" style="margin-top:4px">Cuide da sua sa˙de bucal com planejamento e acolhimento</h2>
+      <p class="lead">Converse com a equipe do ISBI Odonto para receber mais informaÁıes, agendar uma avaliaÁ„o e entender quais tratamentos podem ser indicados para o seu caso.</p>
       <div class="fcta-btns">
         <a class="btn btn--wa btn--lg btn--pulse sellbot-wpp-open" href="https://wa.me/554184227987?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" onclick="isbiTrack&&isbiTrack('cta_whatsapp_final')">
-          <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>Gostaria de mais informa√ß√µes
+          <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>Gostaria de mais informaÁıes
         </a>
       </div>
     </div>
@@ -695,20 +786,20 @@ body{padding-bottom:76px}
   <div class="wrap">
     <div class="care-shell">
       <div class="sh sh--c rv-up care-head">
-        <h2 class="ttl">Sua sa√∫de bucal merece aten√ß√£o em cada detalhe</h2>
-        <p class="lead">Cada sorriso tem uma hist√≥ria, uma necessidade e um objetivo. No ISBI Odonto, o atendimento come√ßa com uma avalia√ß√£o individualizada para entender sua sa√∫de bucal, suas expectativas e o melhor caminho para o seu tratamento.</p>
+        <h2 class="ttl">Sua sa˙de bucal merece atenÁ„o em cada detalhe</h2>
+        <p class="lead">Cada sorriso tem uma histÛria, uma necessidade e um objetivo. No ISBI Odonto, o atendimento comeÁa com uma avaliaÁ„o individualizada para entender sua sa˙de bucal, suas expectativas e o melhor caminho para o seu tratamento.</p>
       </div>
       <div class="pain-grid">
-        <div class="pain-card rv-up" style="--d:.05s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-tooth"/></svg></div><p>Precisa fazer uma avalia√ß√£o odontol√≥gica?</p></div>
-        <div class="pain-card rv-up" style="--d:.13s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-smile"/></svg></div><p>Quer recuperar a est√©tica do sorriso?</p></div>
+        <div class="pain-card rv-up" style="--d:.05s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-tooth"/></svg></div><p>Precisa fazer uma avaliaÁ„o odontolÛgica?</p></div>
+        <div class="pain-card rv-up" style="--d:.13s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-smile"/></svg></div><p>Quer recuperar a estÈtica do sorriso?</p></div>
         <div class="pain-card rv-up" style="--d:.21s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-crown"/></svg></div><p>Tem dificuldade para mastigar?</p></div>
-        <div class="pain-card rv-up" style="--d:.29s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg></div><p>Usa pr√≥tese e deseja mais conforto?</p></div>
+        <div class="pain-card rv-up" style="--d:.29s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg></div><p>Usa prÛtese e deseja mais conforto?</p></div>
         <div class="pain-card rv-up" style="--d:.37s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-star-o"/></svg></div><p>Procura atendimento com planejamento completo?</p></div>
-        <div class="pain-card rv-up" style="--d:.45s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg></div><p>Busca uma cl√≠nica odontol√≥gica em Curitiba com estrutura integrada?</p></div>
+        <div class="pain-card rv-up" style="--d:.45s"><div class="pain-ico"><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg></div><p>Busca uma clÌnica odontolÛgica em Curitiba com estrutura integrada?</p></div>
       </div>
       <div class="care-foot rv-up" style="--d:.5s">
         <a class="btn btn--wa sellbot-wpp-open" href="https://wa.me/554184227987?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" onclick="isbiTrack&&isbiTrack('cta_whatsapp_dor')">
-          <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>Gostaria de mais informa√ß√µes
+          <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>Gostaria de mais informaÁıes
         </a>
       </div>
     </div>
@@ -720,31 +811,31 @@ body{padding-bottom:76px}
   <div class="wrap">
     <div class="sh rv-up atd-head">
       <h2 class="ttl">Como funciona o atendimento no ISBI Odonto?</h2>
-      <p class="lead">O cuidado come√ßa com uma escuta atenta e uma avalia√ß√£o profissional. A partir disso, cada caso √© planejado de forma individual, considerando sa√∫de bucal, fun√ß√£o, est√©tica, exames necess√°rios e objetivos do paciente.</p>
+      <p class="lead">O cuidado comeÁa com uma escuta atenta e uma avaliaÁ„o profissional. A partir disso, cada caso È planejado de forma individual, considerando sa˙de bucal, funÁ„o, estÈtica, exames necess·rios e objetivos do paciente.</p>
     </div>
     <div class="tl">
       <div class="tl-step rv-up" style="--d:.05s">
         <div class="tl-num">1</div>
         <div class="tl-line" style="--ld:.3s"><div class="tl-line-inner"></div></div>
-        <h3>Avalia√ß√£o inicial</h3>
-        <p>Entendimento das necessidades, hist√≥rico, queixas principais e condi√ß√£o bucal do paciente.</p>
+        <h3>AvaliaÁ„o inicial</h3>
+        <p>Entendimento das necessidades, histÛrico, queixas principais e condiÁ„o bucal do paciente.</p>
       </div>
       <div class="tl-step rv-up" style="--d:.18s">
         <div class="tl-num">2</div>
         <div class="tl-line" style="--ld:.43s"><div class="tl-line-inner"></div></div>
-        <h3>Diagn√≥stico e planejamento</h3>
-        <p>An√°lise cl√≠nica, exames quando necess√°rios e defini√ß√£o da melhor conduta para cada caso.</p>
+        <h3>DiagnÛstico e planejamento</h3>
+        <p>An·lise clÌnica, exames quando necess·rios e definiÁ„o da melhor conduta para cada caso.</p>
       </div>
       <div class="tl-step rv-up" style="--d:.31s">
         <div class="tl-num">3</div>
         <div class="tl-line" style="--ld:.56s"><div class="tl-line-inner"></div></div>
         <h3>Tratamento indicado</h3>
-        <p>Execu√ß√£o das etapas planejadas com acompanhamento profissional e orienta√ß√£o ao paciente.</p>
+        <p>ExecuÁ„o das etapas planejadas com acompanhamento profissional e orientaÁ„o ao paciente.</p>
       </div>
       <div class="tl-step rv-up" style="--d:.44s">
         <div class="tl-num">4</div>
-        <h3>Acompanhamento e manuten√ß√£o</h3>
-        <p>Orienta√ß√µes para preservar a sa√∫de bucal, acompanhar resultados e manter o cuidado ao longo do tempo.</p>
+        <h3>Acompanhamento e manutenÁ„o</h3>
+        <p>OrientaÁıes para preservar a sa˙de bucal, acompanhar resultados e manter o cuidado ao longo do tempo.</p>
       </div>
     </div>
   </div>
@@ -757,14 +848,14 @@ body{padding-bottom:76px}
       <div class="about-frame">
         <div class="about-car" aria-label="Galeria do ISBI Odonto">
           <div class="about-track" id="aboutTrack">
-            <div class="about-slide"><img src="https://lp.isbiodonto.com.br/assets/sobre2.webp" alt="Espa√ßo cl√≠nico do ISBI Odonto" loading="lazy"></div>
+            <div class="about-slide"><img src="https://lp.isbiodonto.com.br/assets/sobre2.webp" alt="EspaÁo clÌnico do ISBI Odonto" loading="lazy"></div>
             <div class="about-slide"><img src="https://lp.isbiodonto.com.br/assets/sobre1.webp" alt="Ambiente interno do ISBI Odonto" loading="lazy"></div>
-            <div class="about-slide"><img src="https://lp.isbiodonto.com.br/assets/centro-cirurgico.jpeg" alt="Centro cir√∫rgico do ISBI Odonto" loading="lazy"></div>
+            <div class="about-slide"><img src="https://lp.isbiodonto.com.br/assets/centro-cirurgico.jpeg" alt="Centro cir˙rgico do ISBI Odonto" loading="lazy"></div>
           </div>
           <button class="car-nav car-prev" id="aboutPrev" aria-label="Foto anterior">
             <svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg>
           </button>
-          <button class="car-nav car-next" id="aboutNext" aria-label="Pr√≥xima foto">
+          <button class="car-nav car-next" id="aboutNext" aria-label="PrÛxima foto">
             <svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg>
           </button>
         </div>
@@ -772,11 +863,11 @@ body{padding-bottom:76px}
       </div>
     </div>
     <div class="about-card rv-up">
-      <h2 class="ttl">O ISBI Odonto une experi√™ncia, estrutura e cuidado em Curitiba</h2>
-      <p class="lead">Somos uma cl√≠nica odontol√≥gica com foco em reabilita√ß√£o oral, pr√≥teses, implantes dent√°rios e tratamentos voltados √† recupera√ß√£o da fun√ß√£o mastigat√≥ria, sa√∫de bucal e est√©tica do sorriso.</p>
+      <h2 class="ttl">O ISBI Odonto une experiÍncia, estrutura e cuidado em Curitiba</h2>
+      <p class="lead">Somos uma clÌnica odontolÛgica com foco em reabilitaÁ„o oral, prÛteses, implantes dent·rios e tratamentos voltados ‡ recuperaÁ„o da funÁ„o mastigatÛria, sa˙de bucal e estÈtica do sorriso.</p>
       <div class="about-copy">
-        <p>Localizada no bairro Santa Quit√©ria, com f√°cil acesso para pacientes de diferentes regi√µes de Curitiba, a cl√≠nica atua h√° 23 anos com experi√™ncia cl√≠nica e planejamento personalizado.</p>
-        <p>Entre os diferenciais da nossa estrutura est√£o o laborat√≥rio de pr√≥tese pr√≥prio, o centro cir√∫rgico e a integra√ß√£o entre diagn√≥stico, etapas cl√≠nicas, procedimentos cir√∫rgicos e reabilita√ß√£o prot√©tica no mesmo local.</p>
+        <p>Localizada no bairro Santa QuitÈria, com f·cil acesso para pacientes de diferentes regiıes de Curitiba, a clÌnica atua h· 23 anos com experiÍncia clÌnica e planejamento personalizado.</p>
+        <p>Entre os diferenciais da nossa estrutura est„o o laboratÛrio de prÛtese prÛprio, o centro cir˙rgico e a integraÁ„o entre diagnÛstico, etapas clÌnicas, procedimentos cir˙rgicos e reabilitaÁ„o protÈtica no mesmo local.</p>
       </div>
     </div>
   </div>
@@ -786,45 +877,45 @@ body{padding-bottom:76px}
 <section class="sec sec--ow str-sec" id="diferenciais" data-screen-label="Nossa Estrutura">
   <div class="wrap">
     <div class="sh rv-up str-head">
-      <h2 class="ttl">Estrutura completa para cuidar do seu sorriso com mais seguran√ßa</h2>
+      <h2 class="ttl">Estrutura completa para cuidar do seu sorriso com mais seguranÁa</h2>
     </div>
     <div class="str-rows">
       <div class="str-row-2">
         <article class="fc fc--ft rv-clip-r">
           <div class="fc__badge">DESTAQUE</div>
           <div class="fc__ico"><svg viewBox="0 0 24 24"><use href="#i-flask"/></svg></div>
-          <h3>Laborat√≥rio anexo ao consult√≥rio</h3>
-          <p>O laborat√≥rio anexo ao consult√≥rio aproxima as etapas cl√≠nicas e laboratoriais, contribuindo para mais precis√£o, agilidade e personaliza√ß√£o em diferentes fases do tratamento.</p>
+          <h3>LaboratÛrio anexo ao consultÛrio</h3>
+          <p>O laboratÛrio anexo ao consultÛrio aproxima as etapas clÌnicas e laboratoriais, contribuindo para mais precis„o, agilidade e personalizaÁ„o em diferentes fases do tratamento.</p>
         </article>
         <article class="fc fc--ft rv-clip-r" style="--d:.18s">
           <div class="fc__badge">ESTRUTURA</div>
           <div class="fc__ico"><svg viewBox="0 0 24 24"><use href="#i-scan"/></svg></div>
-          <h3>Centro cir√∫rgico pr√≥prio</h3>
-          <p>O centro cir√∫rgico da cl√≠nica permite realizar etapas cir√∫rgicas com mais previsibilidade, suporte e seguran√ßa para casos que exigem maior estrutura.</p>
+          <h3>Centro cir˙rgico prÛprio</h3>
+          <p>O centro cir˙rgico da clÌnica permite realizar etapas cir˙rgicas com mais previsibilidade, suporte e seguranÁa para casos que exigem maior estrutura.</p>
         </article>
       </div>
       <div class="str-row-3">
         <article class="fc rv-scale" style="--d:.05s">
           <div class="fc__ico"><svg viewBox="0 0 24 24"><use href="#i-team"/></svg></div>
-          <h3>Avalia√ß√£o com o pr√≥prio profissional</h3>
-          <p>A avalia√ß√£o √© feita pelo profissional respons√°vel pelo planejamento e condu√ß√£o do tratamento, trazendo mais clareza no diagn√≥stico e na tomada de decis√£o.</p>
+          <h3>AvaliaÁ„o com o prÛprio profissional</h3>
+          <p>A avaliaÁ„o È feita pelo profissional respons·vel pelo planejamento e conduÁ„o do tratamento, trazendo mais clareza no diagnÛstico e na tomada de decis„o.</p>
         </article>
         <article class="fc rv-scale" style="--d:.15s">
           <div class="fc__ico"><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg></div>
           <h3>Atendimento humanizado</h3>
-          <p>Um atendimento pr√≥ximo, claro e cuidadoso para que o paciente entenda cada etapa do tratamento e se sinta acolhido durante sua jornada.</p>
+          <p>Um atendimento prÛximo, claro e cuidadoso para que o paciente entenda cada etapa do tratamento e se sinta acolhido durante sua jornada.</p>
         </article>
         <article class="fc rv-scale" style="--d:.25s">
           <div class="fc__ico"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></div>
-          <h3>Localiza√ß√£o estrat√©gica</h3>
-          <p>Localizado no bairro Santa Quit√©ria, o ISBI Odonto tem f√°cil acesso para pacientes de diferentes regi√µes de Curitiba.</p>
+          <h3>LocalizaÁ„o estratÈgica</h3>
+          <p>Localizado no bairro Santa QuitÈria, o ISBI Odonto tem f·cil acesso para pacientes de diferentes regiıes de Curitiba.</p>
         </article>
       </div>
     </div>
     <div class="callout-card rv-up" style="--d:.1s">
       <div>
-        <h3>Cl√≠nica credenciada para implantes pela Copel</h3>
-        <p>Al√©m da estrutura cl√≠nica e cir√∫rgica, o ISBI Odonto √© credenciado pela Copel para tratamentos com implantes dent√°rios.</p>
+        <h3>ClÌnica credenciada para implantes pela Copel</h3>
+        <p>AlÈm da estrutura clÌnica e cir˙rgica, o ISBI Odonto È credenciado pela Copel para tratamentos com implantes dent·rios.</p>
       </div>
       <div class="cc__brand">
         <img src="https://lp.isbiodonto.com.br/assets/Copel.svg.png" alt="Copel" loading="lazy">
@@ -833,7 +924,7 @@ body{padding-bottom:76px}
     <div class="callout-card rv-up" style="--d:.15s">
       <div>
         <h3>Componentes e implantes Neodent</h3>
-        <p>O ISBI Odonto trabalha exclusivamente com componentes e implantes da Neodent, priorizando padroniza√ß√£o, previsibilidade e seguran√ßa no planejamento reabilitador.</p>
+        <p>O ISBI Odonto trabalha exclusivamente com componentes e implantes da Neodent, priorizando padronizaÁ„o, previsibilidade e seguranÁa no planejamento reabilitador.</p>
       </div>
       <div class="cc__brand">
         <img src="https://lp.isbiodonto.com.br/assets/logo-neodent.webp" alt="Neodent" loading="lazy">
@@ -841,7 +932,7 @@ body{padding-bottom:76px}
     </div>
     <div style="text-align:center;margin-top:44px" class="rv-up">
       <a class="btn btn--wa btn--lg sellbot-wpp-open" href="https://wa.me/554184227987?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" onclick="isbiTrack&&isbiTrack('cta_whatsapp_diferenciais')">
-        <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>Gostaria de mais informa√ß√µes
+        <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>Gostaria de mais informaÁıes
       </a>
     </div>
   </div>
@@ -851,36 +942,36 @@ body{padding-bottom:76px}
 <section class="sec team-sec" id="profissionais" data-screen-label="Profissionais">
   <div class="wrap">
     <div class="sh sh--c rv-up">
-      <h2 class="ttl">Profissionais respons√°veis pelo seu atendimento</h2>
-      <p class="lead">Conhe√ßa os profissionais que atuam no ISBI Odonto com foco em reabilita√ß√£o oral, implantes dent√°rios, pr√≥teses, odontologia est√©tica, planejamento individualizado e atendimento acolhedor.</p>
+      <h2 class="ttl">Profissionais respons·veis pelo seu atendimento</h2>
+      <p class="lead">ConheÁa os profissionais que atuam no ISBI Odonto com foco em reabilitaÁ„o oral, implantes dent·rios, prÛteses, odontologia estÈtica, planejamento individualizado e atendimento acolhedor.</p>
     </div>
     <div class="team-grid">
       <article class="team-card rv-left">
         <div class="team-media">
-          <img src="https://lp.isbiodonto.com.br/assets/luciano.webp" alt="Dr. Luciano Zanetti, cirurgi√£o-dentista do ISBI" loading="lazy">
+          <img src="https://lp.isbiodonto.com.br/assets/luciano.webp" alt="Dr. Luciano Zanetti, cirurgi„o-dentista do ISBI" loading="lazy">
         </div>
         <div class="team-body">
           <h3 class="team-name">Dr. Luciano Zanetti</h3>
-          <div class="team-role">Cirurgi√£o-dentista ‚Äî CRO 11612/PR</div>
-          <div class="team-sub">Respons√°vel t√©cnico do ISBI ‚Äî Instituto Sul Brasileiro de Implantodontia</div>
+          <div class="team-role">Cirurgi„o-dentista ó CRO 11612/PR</div>
+          <div class="team-sub">Respons·vel tÈcnico do ISBI ó Instituto Sul Brasileiro de Implantodontia</div>
           <div class="team-copy">
-            <p>O Dr. Luciano Zanetti √© cirurgi√£o-dentista graduado pela Universidade Estadual de Ponta Grossa, em 1997, e especialista em Implantodontia pela Universidade Federal do Paran√°.</p>
-            <p>Com 28 anos de experi√™ncia em implantes dent√°rios, atua no planejamento e execu√ß√£o de tratamentos voltados √† reabilita√ß√£o oral, devolvendo fun√ß√£o, seguran√ßa e qualidade de vida aos pacientes por meio de solu√ß√µes com implantes e pr√≥teses.</p>
-            <p>Sua trajet√≥ria profissional est√° diretamente ligada √† hist√≥ria do ISBI, onde tamb√©m exerce a fun√ß√£o de respons√°vel t√©cnico da cl√≠nica.</p>
+            <p>O Dr. Luciano Zanetti È cirurgi„o-dentista graduado pela Universidade Estadual de Ponta Grossa, em 1997, e especialista em Implantodontia pela Universidade Federal do Paran·.</p>
+            <p>Com 28 anos de experiÍncia em implantes dent·rios, atua no planejamento e execuÁ„o de tratamentos voltados ‡ reabilitaÁ„o oral, devolvendo funÁ„o, seguranÁa e qualidade de vida aos pacientes por meio de soluÁıes com implantes e prÛteses.</p>
+            <p>Sua trajetÛria profissional est· diretamente ligada ‡ histÛria do ISBI, onde tambÈm exerce a funÁ„o de respons·vel tÈcnico da clÌnica.</p>
           </div>
         </div>
       </article>
       <article class="team-card team-card--rev rv-right" style="--d:.15s">
         <div class="team-media">
-          <img src="https://lp.isbiodonto.com.br/assets/stephanie.webp" alt="Dra. St√©phanie Padilha Geraldini, cirurgi√£-dentista do ISBI" loading="lazy">
+          <img src="https://lp.isbiodonto.com.br/assets/stephanie.webp" alt="Dra. StÈphanie Padilha Geraldini, cirurgi„-dentista do ISBI" loading="lazy">
         </div>
         <div class="team-body">
-          <h3 class="team-name">Dra. St√©phanie Padilha Geraldini</h3>
-          <div class="team-role">Cirurgi√£-dentista ‚Äî CRO-PR 21043</div>
+          <h3 class="team-name">Dra. StÈphanie Padilha Geraldini</h3>
+          <div class="team-role">Cirurgi„-dentista ó CRO-PR 21043</div>
           <div class="team-sub"></div>
           <div class="team-copy">
-            <p>A Dra. St√©phanie Padilha Geraldini √© cirurgi√£-dentista formada pela Universidade Tuiuti do Paran√°, em 2010.</p>
-            <p>√â especialista em Pr√≥tese Dent√°ria e atua tamb√©m nas √°reas de odontologia restauradora e est√©tica, com forma√ß√£o complementar em pr√≥teses sobre implante. Com 16 anos de experi√™ncia em reabilita√ß√£o oral e est√©tica dental, realiza tratamentos voltados √† recupera√ß√£o do sorriso, fun√ß√£o mastigat√≥ria e harmonia est√©tica, sempre com planejamento individualizado para cada paciente.</p>
+            <p>A Dra. StÈphanie Padilha Geraldini È cirurgi„-dentista formada pela Universidade Tuiuti do Paran·, em 2010.</p>
+            <p>… especialista em PrÛtese Dent·ria e atua tambÈm nas ·reas de odontologia restauradora e estÈtica, com formaÁ„o complementar em prÛteses sobre implante. Com 16 anos de experiÍncia em reabilitaÁ„o oral e estÈtica dental, realiza tratamentos voltados ‡ recuperaÁ„o do sorriso, funÁ„o mastigatÛria e harmonia estÈtica, sempre com planejamento individualizado para cada paciente.</p>
           </div>
         </div>
       </article>
@@ -892,8 +983,8 @@ body{padding-bottom:76px}
 <section class="sec darkblock" data-screen-label="Planejamento Individualizado">
   <div class="wrap">
     <div class="db__inner" id="dbInner">
-      <h2 class="ttl db__h2" id="dbH2">Cada paciente precisa de um plano de cuidado pr√≥prio</h2>
-      <p class="lead db__lead">Antes de indicar qualquer tratamento, √© essencial avaliar a sa√∫de bucal, a fun√ß√£o mastigat√≥ria, as necessidades est√©ticas e os objetivos de cada paciente. No ISBI Odonto, o planejamento √© feito de forma individualizada, com orienta√ß√£o clara sobre as possibilidades de tratamento.</p>
+      <h2 class="ttl db__h2" id="dbH2">Cada paciente precisa de um plano de cuidado prÛprio</h2>
+      <p class="lead db__lead">Antes de indicar qualquer tratamento, È essencial avaliar a sa˙de bucal, a funÁ„o mastigatÛria, as necessidades estÈticas e os objetivos de cada paciente. No ISBI Odonto, o planejamento È feito de forma individualizada, com orientaÁ„o clara sobre as possibilidades de tratamento.</p>
       <div style="margin-top:30px" class="db__btn">
         <a class="btn btn--wa btn--lg sellbot-wpp-open" href="https://wa.me/554184227987?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" onclick="isbiTrack&&isbiTrack('cta_whatsapp_avaliacao')">
           <svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wa"/></svg>Agendar pelo WhatsApp
@@ -904,30 +995,30 @@ body{padding-bottom:76px}
 </section>
 
 <!-- ===== 11 FAQ ===== -->
-<section class="sec faq-sec" id="duvidas" data-screen-label="D√∫vidas Frequentes">
+<section class="sec faq-sec" id="duvidas" data-screen-label="D˙vidas Frequentes">
   <div class="wrap">
     <div class="sh sh--c rv-left">
       <h2 class="ttl">Perguntas frequentes sobre o ISBI Odonto</h2>
     </div>
     <div class="faq-wrap">
-      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>O ISBI Odonto atende quais tratamentos?</span></button><div class="faq-a"><div>O ISBI Odonto atua com reabilita√ß√£o oral, implantes dent√°rios, pr√≥teses dent√°rias, pr√≥teses sobre implante, odontologia restauradora, est√©tica dental, clareamento e cuidados preventivos. A indica√ß√£o de cada tratamento depende de avalia√ß√£o profissional.</div></div></div>
-      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>A cl√≠nica atende somente implantes?</span></button><div class="faq-a"><div>N√£o. Embora o ISBI tenha forte atua√ß√£o em implantodontia e reabilita√ß√£o oral, a cl√≠nica re√∫ne diferentes especialidades odontol√≥gicas para oferecer um cuidado mais completo em um √∫nico local.</div></div></div>
-      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>Preciso passar por avalia√ß√£o antes do or√ßamento?</span></button><div class="faq-a"><div>Sim. O or√ßamento depende da an√°lise individual, condi√ß√£o bucal, exames necess√°rios, tipo de tratamento indicado e planejamento profissional. A avalia√ß√£o ajuda a definir a melhor conduta para cada caso.</div></div></div>
-      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>A cl√≠nica possui laborat√≥rio de pr√≥tese?</span></button><div class="faq-a"><div>Sim. A cl√≠nica conta com laborat√≥rio anexo ao consult√≥rio, o que contribui para maior integra√ß√£o entre dentista e laborat√≥rio em diferentes etapas do tratamento.</div></div></div>
-      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>O ISBI Odonto tem centro cir√∫rgico pr√≥prio?</span></button><div class="faq-a"><div>Sim. A cl√≠nica possui centro cir√∫rgico pr√≥prio, permitindo realizar procedimentos indicados com mais estrutura, previsibilidade e suporte.</div></div></div>
-      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>Onde fica o ISBI Odonto?</span></button><div class="faq-a"><div>O ISBI Odonto fica na R. Prof. Ulisses Vieira, 1315, no bairro Santa Quit√©ria, em Curitiba ‚Äî PR.</div></div></div>
-      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>Como fa√ßo para agendar uma avalia√ß√£o?</span></button><div class="faq-a"><div>Voc√™ pode entrar em contato pelo telefone ou WhatsApp da cl√≠nica: (41) 8422-7987. A equipe ir√° orientar sobre hor√°rios e informa√ß√µes necess√°rias para o atendimento.</div></div></div>
-      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>A indica√ß√£o de tratamento √© igual para todos os pacientes?</span></button><div class="faq-a"><div>N√£o. Cada paciente precisa de uma avalia√ß√£o individualizada. O planejamento considera sa√∫de bucal, hist√≥rico, exames, fun√ß√£o mastigat√≥ria, est√©tica e objetivos do paciente.</div></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>O ISBI Odonto atende quais tratamentos?</span></button><div class="faq-a"><div>O ISBI Odonto atua com reabilitaÁ„o oral, implantes dent·rios, prÛteses dent·rias, prÛteses sobre implante, odontologia restauradora, estÈtica dental, clareamento e cuidados preventivos. A indicaÁ„o de cada tratamento depende de avaliaÁ„o profissional.</div></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>A clÌnica atende somente implantes?</span></button><div class="faq-a"><div>N„o. Embora o ISBI tenha forte atuaÁ„o em implantodontia e reabilitaÁ„o oral, a clÌnica re˙ne diferentes especialidades odontolÛgicas para oferecer um cuidado mais completo em um ˙nico local.</div></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>Preciso passar por avaliaÁ„o antes do orÁamento?</span></button><div class="faq-a"><div>Sim. O orÁamento depende da an·lise individual, condiÁ„o bucal, exames necess·rios, tipo de tratamento indicado e planejamento profissional. A avaliaÁ„o ajuda a definir a melhor conduta para cada caso.</div></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>A clÌnica possui laboratÛrio de prÛtese?</span></button><div class="faq-a"><div>Sim. A clÌnica conta com laboratÛrio anexo ao consultÛrio, o que contribui para maior integraÁ„o entre dentista e laboratÛrio em diferentes etapas do tratamento.</div></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>O ISBI Odonto tem centro cir˙rgico prÛprio?</span></button><div class="faq-a"><div>Sim. A clÌnica possui centro cir˙rgico prÛprio, permitindo realizar procedimentos indicados com mais estrutura, previsibilidade e suporte.</div></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>Onde fica o ISBI Odonto?</span></button><div class="faq-a"><div>O ISBI Odonto fica na R. Prof. Ulisses Vieira, 1315, no bairro Santa QuitÈria, em Curitiba ó PR.</div></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>Como faÁo para agendar uma avaliaÁ„o?</span></button><div class="faq-a"><div>VocÍ pode entrar em contato pelo telefone ou WhatsApp da clÌnica: (41) 8422-7987. A equipe ir· orientar sobre hor·rios e informaÁıes necess·rias para o atendimento.</div></div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-ic"><svg viewBox="0 0 24 24"><use href="#i-chevron"/></svg></span><span>A indicaÁ„o de tratamento È igual para todos os pacientes?</span></button><div class="faq-a"><div>N„o. Cada paciente precisa de uma avaliaÁ„o individualizada. O planejamento considera sa˙de bucal, histÛrico, exames, funÁ„o mastigatÛria, estÈtica e objetivos do paciente.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ===== 11 LOCALIZA√á√ÉO ===== -->
-<section class="sec sec--ow" id="localizacao" data-screen-label="Localiza√ß√£o">
+<!-- ===== 11 LOCALIZA«√O ===== -->
+<section class="sec sec--ow" id="localizacao" data-screen-label="LocalizaÁ„o">
   <div class="wrap">
     <div class="sh rv-up loc-head">
-      <h2 class="ttl">Cl√≠nica odontol√≥gica no bairro Santa Quit√©ria, em Curitiba</h2>
-      <p class="lead">O ISBI Odonto est√° localizado no bairro Santa Quit√©ria, com f√°cil acesso para pacientes de regi√µes pr√≥ximas como √Ågua Verde, Vila Isabel, Fazendinha, Ecoville, Arthur Bernardes e M√°rio Tourinho.</p>
+      <h2 class="ttl">ClÌnica odontolÛgica no bairro Santa QuitÈria, em Curitiba</h2>
+      <p class="lead">O ISBI Odonto est· localizado no bairro Santa QuitÈria, com f·cil acesso para pacientes de regiıes prÛximas como ¡gua Verde, Vila Isabel, Fazendinha, Ecoville, Arthur Bernardes e M·rio Tourinho.</p>
     </div>
     <div class="loc-grid">
       <div class="map-wrap rv-zoom">
@@ -935,10 +1026,10 @@ body{padding-bottom:76px}
       </div>
       <div class="loc-card rv-right" style="--d:.2s">
         <h3>ISBI Odonto</h3>
-        <p class="loc-addr">R. Prof. Ulisses Vieira, 1315 ‚Äî Santa Quit√©ria, Curitiba ‚Äî PR, 80310-120</p>
+        <p class="loc-addr">R. Prof. Ulisses Vieira, 1315 ó Santa QuitÈria, Curitiba ó PR, 80310-120</p>
         <ul class="loc-list">
           <li><span class="loc-ico"><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg></span><div><b>Atendimento</b><small>De segunda a sexta-feira</small></div></li>
-          <li><span class="loc-ico"><svg viewBox="0 0 24 24"><use href="#i-route"/></svg></span><div><b>Santa Quit√©ria</b><small>F√°cil acesso para pacientes de diferentes regi√µes</small></div></li>
+          <li><span class="loc-ico"><svg viewBox="0 0 24 24"><use href="#i-route"/></svg></span><div><b>Santa QuitÈria</b><small>F·cil acesso para pacientes de diferentes regiıes</small></div></li>
         </ul>
         <p class="loc-note">Clique para ligar ou fale pelo WhatsApp.</p>
         <div class="loc-btns">
@@ -960,27 +1051,27 @@ body{padding-bottom:76px}
     <div class="ft-grid">
       <div class="ft-brand">
         <img src="https://lp.isbiodonto.com.br/assets/logo-isbi-white.png" alt="ISBI Odonto" onerror="this.src='uploads/logo-isbi.png';this.style.filter='brightness(0) invert(1)'">
-        <p>Odontologia integrada, reabilita√ß√£o oral, pr√≥tese, implantes dent√°rios e cuidados est√©ticos em uma estrutura completa em Curitiba, com laborat√≥rio anexo, centro cir√∫rgico pr√≥prio e atendimento humanizado.</p>
+        <p>Odontologia integrada, reabilitaÁ„o oral, prÛtese, implantes dent·rios e cuidados estÈticos em uma estrutura completa em Curitiba, com laboratÛrio anexo, centro cir˙rgico prÛprio e atendimento humanizado.</p>
       </div>
       <div class="ft-col">
         <h4>Contato</h4>
         <ul>
           <li><svg viewBox="0 0 24 24"><use href="#i-phone"/></svg><a href="tel:41984227987">(41) 98422-7987</a></li>
           <li><svg viewBox="0 0 24 24"><use href="#i-phone"/></svg><span>(41) 3228-1313</span></li>
-          <li><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg><span>R. Prof. Ulisses Vieira, 1315 ‚Äî Santa Quit√©ria, Curitiba ‚Äî PR</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg><span>R. Prof. Ulisses Vieira, 1315 ó Santa QuitÈria, Curitiba ó PR</span></li>
           <li><svg viewBox="0 0 24 24"><use href="#i-clock"/></svg><span>Segunda a sexta-feira</span></li>
         </ul>
       </div>
       <div class="ft-col">
-        <h4>Respons√°vel t√©cnico</h4>
+        <h4>Respons·vel tÈcnico</h4>
         <ul>
-          <li><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg><span>Dr. Luciano Zanetti ‚Äî CRO/PR 11612</span></li>
-          <li><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg><span>CRO da cl√≠nica: 1106</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-shield"/></svg><span>Dr. Luciano Zanetti ó CRO/PR 11612</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg><span>CRO da clÌnica: 1106</span></li>
         </ul>
       </div>
     </div>
     <div class="ft-bot">
-      ¬© <span id="ftYear"></span> ISBI ‚Äî Instituto Sul-Brasileiro de Implantodontia. Todos os direitos reservados. Desenvolvido por SuperDental¬Æ
+      © <span id="ftYear"></span> ISBI ó Instituto Sul-Brasileiro de Implantodontia. Todos os direitos reservados. Desenvolvido por SuperDentalÆ
     </div>
   </div>
 </footer>
@@ -1007,6 +1098,7 @@ class Component extends DCLogic {
     this.initWordReveal();
     this.initAboutCarousel();
     this.initReviewCarousel();
+    this.initBeforeAfterCompare();
     this.initFAQ();
     this.initNumberCount();
     this.initTreatStagger();
@@ -1144,7 +1236,7 @@ class Component extends DCLogic {
       dotsEl.innerHTML = '';
       for (let i = 0; i < pc; i++) {
         const btn = document.createElement('button');
-        btn.setAttribute('aria-label', `P√°gina ${i + 1}`);
+        btn.setAttribute('aria-label', `P·gina ${i + 1}`);
         btn.addEventListener('click', () => { page = i; update(); restart(); });
         dotsEl.appendChild(btn);
       }
@@ -1174,6 +1266,20 @@ class Component extends DCLogic {
     update();
     restart();
     window.addEventListener('resize', update);
+  }
+
+  /* ---- Before / After comparison ---- */
+  initBeforeAfterCompare() {
+    document.querySelectorAll('.before-after-card').forEach(card => {
+      const range = card.querySelector('.ba-range');
+      if (!range) return;
+      const update = () => {
+        card.style.setProperty('--pos', `${range.value}%`);
+      };
+      range.addEventListener('input', update);
+      range.addEventListener('change', update);
+      update();
+    });
   }
 
   /* ---- FAQ Accordion ---- */
