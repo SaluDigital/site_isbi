@@ -358,19 +358,6 @@ pointer-events:none
 .ft-col li{display:flex;align-items:flex-start;gap:8px}
 .ft-col li svg{width:15px;height:15px;flex:none;margin-top:3px;color:var(--gs)}
 .ft-bot{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:.8rem;color:rgba(255,255,255,.55);text-align:center}
-/* Atendimento notice */
-.care-notice{position:fixed;inset:0;margin:auto;width:calc(100% - 28px);max-width:370px;max-height:calc(100dvh - 28px);overflow:auto;padding:24px;border:1px solid var(--gl);border-radius:24px;background:#fff;color:var(--ink);text-align:center;box-shadow:0 24px 80px rgba(15,40,30,.2)}
-.care-notice::backdrop{background:rgba(18,55,44,.45);backdrop-filter:blur(5px)}
-.care-notice__close{position:absolute;top:15px;right:15px;display:grid;place-items:center;width:40px;height:40px;border-radius:10px;color:var(--ink60)}
-.care-notice__close:hover{background:var(--gw)}
-.care-notice__close svg{width:22px;height:22px}
-.care-notice__icon{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 14px;border-radius:14px;background:var(--gw);color:var(--green)}
-.care-notice__icon svg{width:24px;height:24px}
-.care-notice__title{font-family:var(--fb);font-size:14px;font-weight:700;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
-.care-notice__message{margin:14px 0 20px;font-family:var(--fh);font-size:18px;font-weight:700;line-height:1.45;letter-spacing:-.02em}
-.care-notice__confirm{width:100%;min-height:48px;border-radius:13px;background:var(--green);color:#fff;font-size:17px;font-weight:800}
-.care-notice__confirm:hover{background:var(--gd)}
-.care-notice button:focus-visible,.footer a:focus-visible{outline:3px solid var(--gs);outline-offset:3px}
 /* Sticky CTA */
 .sticky-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:95;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-top:1px solid var(--grey)}
 .sticky-cta-g{display:grid;grid-template-columns:1fr;gap:10px}
@@ -1092,19 +1079,6 @@ body{padding-bottom:76px}
 
 </main>
 
-<!-- Aviso sobre atendimento -->
-<dialog class="care-notice" id="careNotice" aria-labelledby="careNoticeTitle" aria-describedby="careNoticeMessage">
-  <button class="care-notice__close" id="careNoticeClose" type="button" aria-label="Fechar aviso">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg>
-  </button>
-  <div class="care-notice__icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 11v6M12 7h.01"/></svg>
-  </div>
-  <h2 class="care-notice__title" id="careNoticeTitle">Sobre o atendimento</h2>
-  <p class="care-notice__message" id="careNoticeMessage">Não realizamos implante gratuito e não somos conveniados ao SUS.</p>
-  <button class="care-notice__confirm" id="careNoticeConfirm" type="button" autofocus>Entendi</button>
-</dialog>
-
 <!-- Sticky mobile CTA -->
 <div class="sticky-cta">
   <div class="sticky-cta-g">
@@ -1119,7 +1093,6 @@ class Component extends DCLogic {
   state = { aboutIdx: 0, revPage: 0, revCols: 3 };
 
   componentDidMount() {
-    this.initCareNotice();
     this.initHeader();
     this.initDrawer();
     this.initReveal();
@@ -1132,21 +1105,6 @@ class Component extends DCLogic {
     this.initTreatStagger();
     this.initNavActive();
     document.getElementById('ftYear').textContent = new Date().getFullYear();
-  }
-
-  /* ---- Atendimento notice ---- */
-  initCareNotice() {
-    const notice = document.getElementById('careNotice');
-    if (!notice || notice.open) return;
-    const previousOverflow = document.body.style.overflow;
-    const close = () => notice.close();
-    document.getElementById('careNoticeClose').addEventListener('click', close);
-    document.getElementById('careNoticeConfirm').addEventListener('click', close);
-    notice.addEventListener('close', () => {
-      document.body.style.overflow = previousOverflow;
-    }, { once: true });
-    notice.showModal();
-    document.body.style.overflow = 'hidden';
   }
 
   /* ---- Header scroll ---- */
